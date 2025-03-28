@@ -1,3 +1,5 @@
+import { FunnelHeader } from "@/libs/funnel";
+
 export default function Home() {
-  return <div>Hello</div>;
+  return <FunnelHeader />;
 }
