@@ -64,6 +64,7 @@ export function useListNavigation({ onSelect }: UseListNavigationProps = {}) {
   return {
     selectedItemId,
     focusedItemId,
+    itemIds,
     handleItemSelect,
     handleItemBlur,
     handleItemFocus,
