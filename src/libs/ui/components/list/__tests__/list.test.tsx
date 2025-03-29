@@ -1,12 +1,12 @@
 import { render, screen, fireEvent, act, userEvent } from "@/test/test-utils";
-import { List } from "../list";
+import { List, ListItem } from "../list";
 
 describe("List", () => {
   it("renders a list with items", () => {
     render(
       <List>
-        <List.Item id="item1">Item 1</List.Item>
-        <List.Item id="item2">Item 2</List.Item>
+        <ListItem id="item1">Item 1</ListItem>
+        <ListItem id="item2">Item 2</ListItem>
       </List>
     );
 
@@ -17,8 +17,8 @@ describe("List", () => {
   it("renders as an ordered list when ordered prop is true", () => {
     const { container } = render(
       <List ordered>
-        <List.Item id="item1">Item 1</List.Item>
-        <List.Item id="item2">Item 2</List.Item>
+        <ListItem id="item1">Item 1</ListItem>
+        <ListItem id="item2">Item 2</ListItem>
       </List>
     );
 
@@ -31,8 +31,8 @@ describe("List", () => {
 
     render(
       <List onSelect={onSelectMock}>
-        <List.Item id="item1">Item 1</List.Item>
-        <List.Item id="item2">Item 2</List.Item>
+        <ListItem id="item1">Item 1</ListItem>
+        <ListItem id="item2">Item 2</ListItem>
       </List>
     );
 
@@ -49,8 +49,8 @@ describe("List", () => {
 
     render(
       <List onSelect={onSelectMock}>
-        <List.Item id="item1">Item 1</List.Item>
-        <List.Item id="item2">Item 2</List.Item>
+        <ListItem id="item1">Item 1</ListItem>
+        <ListItem id="item2">Item 2</ListItem>
       </List>
     );
 
@@ -69,9 +69,9 @@ describe("List", () => {
   it("navigates through items with arrow keys", async () => {
     render(
       <List>
-        <List.Item id="item1">Item 1</List.Item>
-        <List.Item id="item2">Item 2</List.Item>
-        <List.Item id="item3">Item 3</List.Item>
+        <ListItem id="item1">Item 1</ListItem>
+        <ListItem id="item2">Item 2</ListItem>
+        <ListItem id="item3">Item 3</ListItem>
       </List>
     );
 

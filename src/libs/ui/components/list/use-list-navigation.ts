@@ -1,11 +1,12 @@
 import { useState } from "react";
 
-interface UseListNavigationProps {
+type UseListNavigationProps = {
+  initialSelectedId?: string;
   onSelect?: (id: string) => void;
-}
+};
 
-export function useListNavigation({ onSelect }: UseListNavigationProps = {}) {
-  const [selectedItemId, setSelectedItemId] = useState<string | null>(null);
+export function useListNavigation({ onSelect, initialSelectedId }: UseListNavigationProps = {}) {
+  const [selectedItemId, setSelectedItemId] = useState<string | null>(initialSelectedId || null);
   const [focusedItemId, setFocusedItemId] = useState<string | null>(null);
   const [itemIds, setItemIds] = useState<string[]>([]);
 

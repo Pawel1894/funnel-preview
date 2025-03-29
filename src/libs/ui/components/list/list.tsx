@@ -1,3 +1,5 @@
+"use client";
+
 import { createContext, useContext, useEffect, useLayoutEffect, useRef } from "react";
 import { cva } from "class-variance-authority";
 import { twMerge } from "tailwind-merge";
@@ -31,9 +33,10 @@ type ListProps = {
   ordered?: boolean;
   onSelect?: (id: string) => void;
   className?: string;
+  initialSelectedId?: string;
 };
 
-export function List({ children, ordered = false, onSelect, className }: ListProps) {
+export function List({ children, ordered = false, onSelect, className, initialSelectedId }: ListProps) {
   const {
     selectedItemId,
     focusedItemId,
@@ -42,7 +45,7 @@ export function List({ children, ordered = false, onSelect, className }: ListPro
     handleItemFocus,
     registerItem,
     handleKeyDown,
-  } = useListNavigation({ onSelect });
+  } = useListNavigation({ onSelect, initialSelectedId });
 
   const Tag = ordered ? "ol" : "ul";
 
@@ -85,7 +88,7 @@ type ListItemProps = {
   className?: string;
 };
 
-function Item({ children, id, className }: ListItemProps) {
+export function ListItem({ children, id, className }: ListItemProps) {
   const context = useContext(ListContext);
   const itemRef = useRef<HTMLLIElement>(null);
 
@@ -123,5 +126,3 @@ function Item({ children, id, className }: ListItemProps) {
     </li>
   );
 }
-
-List.Item = Item;

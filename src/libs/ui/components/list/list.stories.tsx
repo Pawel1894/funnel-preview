@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import { List } from "./list";
+import { List, ListItem } from "./list";
 
 const meta: Meta<typeof List> = {
   title: "UI/List",
@@ -18,9 +18,9 @@ export const Default: StoryObj<typeof List> = {
         <h3 className="mb-2 font-medium">Default</h3>
         <div className="w-[300px] overflow-auto border border-muted rounded-md">
           <List>
-            <List.Item id="1">First Item</List.Item>
-            <List.Item id="2">Second Item</List.Item>
-            <List.Item id="3">Third Item</List.Item>
+            <ListItem id="1">First Item</ListItem>
+            <ListItem id="2">Second Item</ListItem>
+            <ListItem id="3">Third Item</ListItem>
           </List>
         </div>
       </div>
@@ -29,9 +29,9 @@ export const Default: StoryObj<typeof List> = {
         <h3 className="mb-2 font-medium">Ordered</h3>
         <div className="w-[300px] overflow-auto border border-muted rounded-md">
           <List ordered>
-            <List.Item id="1">First Item</List.Item>
-            <List.Item id="2">Second Item</List.Item>
-            <List.Item id="3">Third Item</List.Item>
+            <ListItem id="1">First Item</ListItem>
+            <ListItem id="2">Second Item</ListItem>
+            <ListItem id="3">Third Item</ListItem>
           </List>
         </div>
       </div>
@@ -41,9 +41,9 @@ export const Default: StoryObj<typeof List> = {
         <div className="h-[250px] w-[300px] overflow-auto border border-muted rounded-md">
           <List>
             {Array.from({ length: 20 }, (_, i) => (
-              <List.Item key={i + 1} id={String(i + 1)}>
+              <ListItem key={i + 1} id={String(i + 1)}>
                 Item {i + 1}
-              </List.Item>
+              </ListItem>
             ))}
           </List>
         </div>
