@@ -10,7 +10,7 @@ type FunnelHeaderProps = {
 
 export function FunnelHeader({ funnelTitle, pagination }: FunnelHeaderProps) {
   return (
-    <header className="flex items-center gap-x-4 p-4 shadow-md border-b-1 border-b-muted">
+    <div className="flex items-center gap-x-4 p-4 shadow-md border-b-1 border-b-muted">
       <Image src="/logo.png" alt="Perspective.co company logo" width={36} height={36} />
       <div className="flex flex-col justify-center min-w-0">
         <h1 title={funnelTitle} className="text-xl font-bold truncate">
@@ -22,6 +22,6 @@ export function FunnelHeader({ funnelTitle, pagination }: FunnelHeaderProps) {
           </span>
         )}
       </div>
-    </header>
+    </div>
   );
 }

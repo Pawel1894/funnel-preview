@@ -1,1 +1,1 @@
-export { FunnelHeader } from "./components/funnel-header";
+export { FunnelContainer } from "./components/funnel-container";
