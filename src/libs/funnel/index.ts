@@ -1,1 +1,1 @@
-export { FunnelContainer } from "./components/funnel-container";
+export { FunnelContainer } from "./funnel-container";

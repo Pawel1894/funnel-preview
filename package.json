@@ -14,12 +14,14 @@
   },
   "dependencies": {
     "class-variance-authority": "^0.7.1",
+    "mime-types": "^3.0.1",
     "next": "15.2.4",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "tailwind-merge": "^3.0.2"
   },
   "devDependencies": {
+    "@types/mime-types": "^2.1.4",
     "@eslint/eslintrc": "^3",
     "@storybook/addon-essentials": "^8.6.11",
     "@storybook/blocks": "^8.6.11",

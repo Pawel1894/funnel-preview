@@ -1,18 +1,18 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
-import { FileUpload } from "./file-upload";
+import { FileUploadZone } from "./file-upload-zone";
 
-const meta: Meta<typeof FileUpload> = {
-  title: "Components/FileUpload",
-  component: FileUpload,
+const meta: Meta<typeof FileUploadZone> = {
+  title: "UI/FileUploadZone",
+  component: FileUploadZone,
   parameters: {
     layout: "centered",
   },
-} satisfies Meta<typeof FileUpload>;
+} satisfies Meta<typeof FileUploadZone>;
 
 export default meta;
 
-type Story = StoryObj<typeof FileUpload>;
+type Story = StoryObj<typeof FileUploadZone>;
 
 export const Default: Story = {
   args: {

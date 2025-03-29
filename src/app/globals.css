@@ -13,6 +13,9 @@
   --color-muted: rgb(51, 65, 85);
   --color-muted-foreground: rgb(148, 163, 184);
 
+  --color-destructive: rgb(239, 68, 68);
+  --color-destructive-foreground: rgb(255, 255, 255);
+
   --font-sans: var(--font-geist-sans);
 }
 

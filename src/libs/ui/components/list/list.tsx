@@ -16,6 +16,14 @@ type ListContextType = {
 
 const ListContext = createContext<ListContextType | null>(null);
 
+type ListProps = {
+  children: React.ReactNode;
+  ordered?: boolean;
+  onSelect?: (id: string) => void;
+  className?: string;
+  initialSelectedId?: string;
+};
+
 const listVariants = cva("w-full", {
   variants: {
     ordered: {
@@ -27,14 +35,6 @@ const listVariants = cva("w-full", {
     ordered: false,
   },
 });
-
-type ListProps = {
-  children: React.ReactNode;
-  ordered?: boolean;
-  onSelect?: (id: string) => void;
-  className?: string;
-  initialSelectedId?: string;
-};
 
 export function List({ children, ordered = false, onSelect, className, initialSelectedId }: ListProps) {
   const {
@@ -67,6 +67,12 @@ export function List({ children, ordered = false, onSelect, className, initialSe
   );
 }
 
+type ListItemProps = {
+  children: React.ReactNode;
+  id: string;
+  className?: string;
+};
+
 const listItemVariants = cva(
   "px-4 py-2 rounded-md transition-colors cursor-pointer outline-none focus-visible:ring-2 focus-visible:ring-primary/50 focus-visible:ring-offset-2 focus-visible:ring-offset-background",
   {
@@ -81,12 +87,6 @@ const listItemVariants = cva(
     },
   }
 );
-
-type ListItemProps = {
-  children: React.ReactNode;
-  id: string;
-  className?: string;
-};
 
 export function ListItem({ children, id, className }: ListItemProps) {
   const context = useContext(ListContext);

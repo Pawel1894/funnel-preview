@@ -1,4 +1,6 @@
-import { FileUpload } from "@/libs/file-upload";
+"use client";
+
+import { FileUploadZone } from "@/libs/ui/components/file-upload";
 import { FunnelHeader } from "./funnel-header";
 import { FunnelSidebar } from "./funnel-sidebar";
 
@@ -18,9 +20,11 @@ export function FunnelContainer() {
             <FunnelSidebar />
           </div>
           <div className="h-min w-full flex justify-center">
-            <FileUpload
+            <FileUploadZone
               title="Upload Funnel JSON"
               description="Drag and drop your funnel JSON file here, or click the button below to select a file"
+              onFileSelected={(file) => console.log(file)}
+              acceptedFileTypes="application/json"
             />
           </div>
         </div>
