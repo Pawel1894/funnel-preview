@@ -1,8 +1,24 @@
-import { useState, useCallback } from "react";
+import { useState, useCallback, createContext, useContext } from "react";
 import { cva } from "class-variance-authority";
 import { twMerge } from "tailwind-merge";
 
 import { ChevronDownIcon } from "@/libs/ui";
+
+type DropdownContextType = {
+  isOpen: boolean;
+  setIsOpen: (isOpen: boolean) => void;
+  closeAfterSelect: boolean;
+};
+
+const DropdownContext = createContext<DropdownContextType | null>(null);
+
+const useDropdownContext = () => {
+  const context = useContext(DropdownContext);
+  if (!context) {
+    throw new Error("Dropdown components must be used within a Dropdown provider");
+  }
+  return context;
+};
 
 export type DropdownProps = {
   children: React.ReactNode;
@@ -10,6 +26,7 @@ export type DropdownProps = {
   placeholder?: string;
   className?: string;
   onSelect?: () => void;
+  closeOnSelect?: boolean;
 };
 
 const dropdownVariants = cva(
@@ -32,6 +49,7 @@ export function Dropdown({
   className,
   onSelect,
   placeholder = "Select an option",
+  closeOnSelect = true,
 }: DropdownProps) {
   const [isOpen, setIsOpen] = useState(false);
 
@@ -58,16 +76,38 @@ export function Dropdown({
   const buttonStyles = twMerge(dropdownVariants({ variant: "primary" }), "h-10 px-4 py-2 w-full", className);
 
   return (
-    <div className="relative" ref={dropdownRef}>
-      <button type="button" onClick={toggleDropdown} className={buttonStyles}>
-        <span>{selectedText ?? placeholder}</span>
-        <ChevronDownIcon />
-      </button>
-      {isOpen && (
-        <div className="absolute z-10 w-full mt-1 bg-background border border-muted rounded-md shadow-lg">
-          <div className="py-1">{children}</div>
-        </div>
+    <DropdownContext.Provider value={{ isOpen, setIsOpen, closeAfterSelect: closeOnSelect }}>
+      <div className="relative" ref={dropdownRef}>
+        <button type="button" onClick={toggleDropdown} className={buttonStyles}>
+          <span>{selectedText ?? placeholder}</span>
+          <ChevronDownIcon />
+        </button>
+        {children}
+      </div>
+    </DropdownContext.Provider>
+  );
+}
+
+export type DropdownContentProps = {
+  children: React.ReactNode;
+  className?: string;
+};
+
+export function DropdownContent({ children, className }: DropdownContentProps) {
+  const { isOpen, closeAfterSelect, setIsOpen } = useDropdownContext();
+
+  if (!isOpen) return null;
+
+  return (
+    <div
+      className={twMerge(
+        "absolute z-10 w-full mt-1 bg-background border border-muted rounded-md shadow-lg",
+        className
       )}
+    >
+      <div onClick={() => closeAfterSelect && setIsOpen(false)} className="py-1">
+        {children}
+      </div>
     </div>
   );
 }
