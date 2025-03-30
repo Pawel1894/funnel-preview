@@ -3,9 +3,10 @@
 import { useRef, useState } from "react";
 import { cva } from "class-variance-authority";
 
-import { Button, UploadIcon } from "@/libs/ui";
+import { Banner, Button, UploadIcon } from "@/libs/ui";
 
 import { validateFileType, mimeToFileExtension } from "./file-upload";
+import { twMerge } from "tailwind-merge";
 
 export type FileUploadProps = {
   title: string;
@@ -14,10 +15,12 @@ export type FileUploadProps = {
   acceptedFileTypes?: string;
   disabled?: boolean;
   className?: string;
+  onDragOver?: (e: React.DragEvent) => void;
+  onDialogOpen?: () => void;
 };
 
 const uploadAreaVariants = cva(
-  "border-2 border-dashed rounded-md flex flex-col items-center justify-center gap-y-4 p-12",
+  "border-2 border-dashed rounded-md flex flex-col items-center justify-center gap-y-4 p-12 w-full h-full transition-colors",
   {
     variants: {
       isDragging: {
@@ -27,6 +30,10 @@ const uploadAreaVariants = cva(
       disabled: {
         true: "opacity-60 cursor-not-allowed",
         false: "",
+      },
+      error: {
+        true: "border-destructive",
+        false: "border-muted",
       },
     },
     defaultVariants: {
@@ -43,6 +50,8 @@ export function FileUploadZone({
   acceptedFileTypes = "*/*",
   disabled = false,
   className = "",
+  onDialogOpen,
+  onDragOver,
 }: FileUploadProps) {
   const [isDragging, setIsDragging] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -60,6 +69,8 @@ export function FileUploadZone({
     }
 
     clearError();
+
+    onDragOver?.(e);
   };
 
   const handleDragLeave = () => {
@@ -117,32 +128,38 @@ export function FileUploadZone({
     if (!disabled && fileInputRef.current) {
       fileInputRef.current.click();
     }
+
+    onDialogOpen?.();
   };
 
   return (
-    <div
-      onDragOver={handleDragOver}
-      onDragLeave={handleDragLeave}
-      onDrop={handleDrop}
-      className={`${uploadAreaVariants({ isDragging, disabled })} ${className}`}
-    >
-      <input
-        ref={fileInputRef}
-        type="file"
-        accept={acceptedFileTypes}
-        onChange={handleFileInputChange}
-        style={{ display: "none" }}
-        disabled={disabled}
-      />
-      <UploadIcon className="size-14 text-muted-foreground" />
-      <h2 className="text-2xl font-semibold">{title}</h2>
-      <p className="text-center text-muted-foreground md:px-8 max-w-lg">{description}</p>
-
-      <p className="text-destructive text-sm h-4">{error}</p>
-
-      <Button onClick={openFileDialog} variant="primary" disabled={disabled}>
-        Select file
-      </Button>
+    <div className={twMerge("flex flex-col items-center gap-y-4", className)}>
+      <div
+        onDragOver={handleDragOver}
+        onDragLeave={handleDragLeave}
+        onDrop={handleDrop}
+        className={`${twMerge(uploadAreaVariants({ isDragging, disabled, error: !!error }))}`}
+      >
+        <input
+          ref={fileInputRef}
+          type="file"
+          accept={acceptedFileTypes}
+          onChange={handleFileInputChange}
+          style={{ display: "none" }}
+          disabled={disabled}
+        />
+        <UploadIcon className="size-14 text-muted-foreground" />
+        <h2 className="text-2xl font-semibold text-center">{title}</h2>
+        <p className="text-center text-muted-foreground md:px-8 max-w-lg">{description}</p>
+        <Button onClick={openFileDialog} variant="primary" disabled={disabled}>
+          Select file
+        </Button>
+      </div>
+      {error && (
+        <Banner variant="error" title="Error">
+          {error}
+        </Banner>
+      )}
     </div>
   );
 }
