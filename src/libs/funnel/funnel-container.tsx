@@ -7,31 +7,37 @@ import { FunnelHeader } from "./funnel-header";
 import { FunnelSidebar } from "./funnel-sidebar";
 import { parseFunnelJson } from "./parser/funnel-parser";
 import { FunnelError } from "./funnel-error";
-import { Funnel } from "./funnel";
+import { Funnel, Page } from "./funnel";
+import { PageRenderer } from "./preview-builder/page-renderer";
 
 const MAX_CONTAINER_WIDTH_PX = 1440;
 
 export function FunnelContainer() {
   const [funnel, setFunnel] = useState<Funnel>();
-  const [funnelError, setFunnelError] = useState<{
+  const [uploadError, setUploadError] = useState<{
     message: string;
     issues: string[];
   }>();
 
-  const [selectedPageId, setSelectedPageId] = useState<string | undefined>(funnel?.pages[0]?.id);
+  const [currentPage, setCurrentPage] = useState<Page | undefined>(funnel?.pages[0]);
 
   const handlePageChange = (pageId: string) => {
-    setSelectedPageId(pageId);
+    const page = funnel?.pages.find((page) => page.id === pageId);
+    if (!page) {
+      return;
+    }
+
+    setCurrentPage(page);
   };
 
-  const selectedPageNumber = useMemo(() => {
-    if (!funnel || !selectedPageId) {
+  const currentPageNumber = useMemo(() => {
+    if (!funnel || !currentPage) {
       return 0;
     }
 
-    const pageIndex = funnel.pages.findIndex((page) => page.id === selectedPageId);
+    const pageIndex = funnel.pages.findIndex((page) => page.id === currentPage.id);
     return pageIndex !== -1 ? pageIndex + 1 : 0;
-  }, [funnel, selectedPageId]);
+  }, [funnel, currentPage]);
 
   async function handleFunnelFileUpload(file: File) {
     try {
@@ -40,15 +46,18 @@ export function FunnelContainer() {
 
       if (funnel.success) {
         setFunnel(funnel.data);
+        setCurrentPage(funnel.data.pages[0]);
         return;
       }
 
-      setFunnelError(funnel.error);
+      setUploadError(funnel.error);
+      setFunnel(undefined);
     } catch (error) {
-      setFunnelError({
+      setUploadError({
         message: "Unexpected error while parsing the funnel",
         issues: [error instanceof Error ? error.message : "Unknown error"],
       });
+      setFunnel(undefined);
     }
   }
 
@@ -60,7 +69,7 @@ export function FunnelContainer() {
           funnelTitle={funnel?.name}
           pagination={
             funnel && {
-              current: selectedPageNumber,
+              current: currentPageNumber,
               total: funnel?.pages.length,
             }
           }
@@ -71,24 +80,25 @@ export function FunnelContainer() {
       >
         <div className="flex gap-4 w-full h-auto">
           <div className="hidden md:block min-w-[250px] w-1/4">
-            <FunnelSidebar 
-              onPageSelection={handlePageChange} 
-              hasFunnel={!!funnel} 
-              pages={funnel?.pages} 
-            />
+            <FunnelSidebar onPageSelection={handlePageChange} hasFunnel={!!funnel} pages={funnel?.pages} />
           </div>
-          <div className="w-full max-w-2xl flex flex-col items-center gap-y-4">
-            <FileUploadZone
-              title="Upload Funnel JSON"
-              description="Drag and drop your funnel JSON file here, or click the button below to select a file"
-              onFileSelected={handleFunnelFileUpload}
-              acceptedFileTypes="application/json"
-              onDragOver={() => setFunnelError(undefined)}
-              onDialogOpen={() => setFunnelError(undefined)}
-              className="w-full h-min"
-            />
-            {funnelError && <FunnelError error={funnelError} />}
-          </div>
+
+          {!funnel && (
+            <div className="w-full max-w-2xl flex flex-col items-center gap-y-4">
+              <FileUploadZone
+                title="Upload Funnel JSON"
+                description="Drag and drop your funnel JSON file here, or click the button below to select a file"
+                onFileSelected={handleFunnelFileUpload}
+                acceptedFileTypes="application/json"
+                onDragOver={() => setUploadError(undefined)}
+                onDialogOpen={() => setUploadError(undefined)}
+                className="w-full h-min"
+              />
+              {uploadError && <FunnelError error={uploadError} />}
+            </div>
+          )}
+
+          {currentPage && <PageRenderer page={currentPage} />}
         </div>
       </div>
     </div>
