@@ -11,3 +11,5 @@ export { MobileIcon } from "./icons/mobile-icon";
 export { DesktopIcon } from "./icons/desktop-icon";
 export { ChevronRightIcon } from "./icons/chevron-right-icon";
 export { ChevronLeftIcon } from "./icons/chevron-left-icon";
+export { TrashIcon } from "./icons/trash-icon";
+export { XMarkIcon } from "./icons/x-mark-icon";

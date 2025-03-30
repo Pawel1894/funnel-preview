@@ -2,7 +2,7 @@ import { cva } from "class-variance-authority";
 import { twMerge } from "tailwind-merge";
 
 export type ButtonProps = React.ButtonHTMLAttributes<HTMLButtonElement> & {
-  variant?: "primary" | "outline";
+  variant?: "primary" | "outline" | "ghost";
   size?: "sm" | "md" | "lg";
 };
 
@@ -13,6 +13,7 @@ const buttonVariants = cva(
       variant: {
         primary: "bg-primary text-primary-foreground hover:bg-primary/90 shadow-sm",
         outline: "border border-muted bg-transparent hover:bg-muted/20 text-foreground",
+        ghost: "bg-transparent hover:bg-muted/20 text-foreground",
       },
       size: {
         sm: "h-8 px-3 text-xs rounded-md",

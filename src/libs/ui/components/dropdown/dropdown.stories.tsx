@@ -6,7 +6,7 @@ const meta: Meta<typeof Dropdown> = {
   title: "UI/Dropdown",
   component: Dropdown,
   render: function Render() {
-    const [{ selectedText, closeOnSelect }, updateArgs] = useArgs();
+    const [{ selectedText, closeOnSelect, variant }, updateArgs] = useArgs();
 
     const handleSelect = (color: string) => {
       updateArgs({ selectedText: color });
@@ -16,9 +16,13 @@ const meta: Meta<typeof Dropdown> = {
       <div className="flex flex-col gap-8 w-[250px]">
         <div>
           <h3 className="mb-2 font-medium">
-            Default {closeOnSelect ? "(closes on select)" : "(stays open on select)"}
+            {variant} {closeOnSelect ? "(closes on select)" : "(stays open on select)"}
           </h3>
-          <Dropdown selectedText={selectedText || "Choose a color"} closeOnSelect={closeOnSelect}>
+          <Dropdown 
+            selectedText={selectedText || "Choose a color"} 
+            closeOnSelect={closeOnSelect}
+            variant={variant}
+          >
             <DropdownContent>
               <div
                 className="px-4 py-2 hover:bg-muted cursor-pointer flex items-center gap-2"
@@ -52,10 +56,19 @@ const meta: Meta<typeof Dropdown> = {
 export default meta;
 type Story = StoryObj<typeof Dropdown>;
 
-export const Default: Story = {
+export const Primary: Story = {
   args: {
     selectedText: "Choose a color",
     closeOnSelect: true,
+    variant: "primary",
+  },
+};
+
+export const Outline: Story = {
+  args: {
+    selectedText: "Choose a color",
+    closeOnSelect: true,
+    variant: "outline",
   },
 };
 
@@ -63,5 +76,6 @@ export const StayOpen: Story = {
   args: {
     selectedText: "Choose a color",
     closeOnSelect: false,
+    variant: "primary",
   },
 };
