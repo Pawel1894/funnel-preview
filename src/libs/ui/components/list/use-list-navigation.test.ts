@@ -1,6 +1,6 @@
 import { act, createKeyboardEventStub, renderHook } from "@/test/test-utils";
 
-import { useListNavigation } from "../use-list-navigation";
+import { useListNavigation } from "./use-list-navigation";
 
 describe("useListNavigation", () => {
   it("should register item IDs correctly", () => {

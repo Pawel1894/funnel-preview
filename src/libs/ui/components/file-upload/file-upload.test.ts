@@ -1,4 +1,4 @@
-import { mimeToFileExtension, validateFileType } from "../file-upload";
+import { mimeToFileExtension, validateFileType } from "./file-upload";
 
 describe("file-upload", () => {
   describe("validateFileType", () => {

@@ -1,5 +1,5 @@
 import { render, screen, fireEvent, act, userEvent } from "@/test/test-utils";
-import { List, ListItem } from "../list";
+import { List, ListItem } from "./list";
 
 describe("List", () => {
   it("renders a list with items", () => {
