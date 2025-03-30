@@ -1,4 +1,4 @@
-import { MobileIcon } from "../ui/icons/mobile-icon";
+import { MobileIcon } from "@/libs/ui";
 import { isViewMode, ViewMode } from "./funnel";
 
 import { DesktopIcon, Switcher } from "@/libs/ui";
