@@ -25,7 +25,7 @@ export function PageRenderer({ page, bgColor, viewMode = "mobile" }: PageRendere
     <div className="flex-1 border border-muted rounded-lg overflow-hidden md:p-4 h-inherit">
       <div className="h-full overflow-auto">
         <div
-          className="p-16 mx-auto"
+          className="p-16 mx-auto flex flex-col gap-14"
           style={{
             width: currentViewport.width,
             minHeight: currentViewport.minHeight,
@@ -33,7 +33,7 @@ export function PageRenderer({ page, bgColor, viewMode = "mobile" }: PageRendere
           }}
         >
           {page.blocks.map((block) => (
-            <BlockRenderer key={block.id} block={block} />
+            <BlockRenderer key={block.id} block={block} bgColor={bgColor} />
           ))}
         </div>
       </div>

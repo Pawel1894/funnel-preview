@@ -14,6 +14,7 @@
   },
   "dependencies": {
     "class-variance-authority": "^0.7.1",
+    "colord": "^2.9.3",
     "mime-types": "^3.0.1",
     "next": "15.2.4",
     "react": "^19.0.0",

@@ -1,17 +1,18 @@
 import { ImageBlock as ImageBlockType } from "../../funnel";
+import { BlockComponentProps } from "../block-registry";
 
-type ImageBlockProps = {
-  block: ImageBlockType;
-};
-
-export function ImageBlock({ block }: ImageBlockProps) {
+export function ImageBlock({ block }: BlockComponentProps<ImageBlockType>) {
   return (
-    <img 
-      src={block.src}
-      alt={block.alt}
-      style={{
-        maxWidth: '100%'
-      }}
-    />
+    <div className="w-full">
+      <div className="relative rounded-2xl overflow-hidden">
+        <img
+          src={block.src}
+          alt={block.alt}
+          className="w-full h-auto object-cover opacity-0 transition-opacity duration-300"
+          onLoad={(e) => ((e.target as HTMLImageElement).style.opacity = "1")}
+          loading="lazy"
+        />
+      </div>
+    </div>
   );
 }
