@@ -18,10 +18,10 @@
     "next": "15.2.4",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
-    "tailwind-merge": "^3.0.2"
+    "tailwind-merge": "^3.0.2",
+    "zod": "^3.24.2"
   },
   "devDependencies": {
-    "@types/mime-types": "^2.1.4",
     "@eslint/eslintrc": "^3",
     "@storybook/addon-essentials": "^8.6.11",
     "@storybook/blocks": "^8.6.11",
@@ -30,6 +30,7 @@
     "@tailwindcss/postcss": "^4",
     "@testing-library/dom": "^10.4.0",
     "@testing-library/react": "^16.2.0",
+    "@types/mime-types": "^2.1.4",
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
