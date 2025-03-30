@@ -1,17 +1,34 @@
 import { List, ListItem } from "@/libs/ui";
+import { Page } from "./funnel";
 
-export function FunnelSidebar() {
+type FunnelSidebarProps = {
+  pages?: Page[];
+  hasFunnel: boolean; // New prop that indicates if a funnel was uploaded
+  onPageSelection?: (pageId: string) => void;
+};
+
+export function FunnelSidebar({ pages, onPageSelection, hasFunnel }: FunnelSidebarProps) {
+  const hasPages = pages && pages.length > 0;
+
   return (
     <aside className="flex flex-col p-4 border border-muted rounded-md h-full">
       <h2 className="text-lg font-semibold">Funnel pages</h2>
       <nav className="mt-4 space-y-2">
-        <List className="w-full" ordered initialSelectedId="item1">
-          <ListItem id="item1">Value proposition</ListItem>
-          <ListItem id="item2">Goal</ListItem>
-          <ListItem id="item3">Position</ListItem>
-          <ListItem id="item4">Budget</ListItem>
-        </List>
+        {hasPages && (
+          <List className="w-full" initialSelectedId={pages[0].id} onSelect={onPageSelection}>
+            {pages.map((page, i) => (
+              <ListItem title={getPageTitle(i)} className="truncate" key={page.id} id={page.id}>
+                {getPageTitle(i)}
+              </ListItem>
+            ))}
+          </List>
+        )}
+        {hasFunnel && !hasPages && <span>Uploaded funnel has no pages.</span>}
       </nav>
     </aside>
   );
+}
+
+function getPageTitle(index: number) {
+  return `Page no. ${index + 1}`;
 }

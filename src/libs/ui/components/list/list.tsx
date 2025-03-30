@@ -71,7 +71,7 @@ type ListItemProps = {
   children: React.ReactNode;
   id: string;
   className?: string;
-};
+} & React.HTMLAttributes<HTMLLIElement>;
 
 const listItemVariants = cva(
   "px-4 py-2 rounded-md transition-colors cursor-pointer outline-none focus-visible:ring-2 focus-visible:ring-primary/50 focus-visible:ring-offset-2 focus-visible:ring-offset-background",
@@ -88,7 +88,7 @@ const listItemVariants = cva(
   }
 );
 
-export function ListItem({ children, id, className }: ListItemProps) {
+export function ListItem({ children, id, className, ...restProps }: ListItemProps) {
   const context = useContext(ListContext);
   const itemRef = useRef<HTMLLIElement>(null);
 
@@ -121,6 +121,7 @@ export function ListItem({ children, id, className }: ListItemProps) {
       tabIndex={0}
       role="option"
       aria-selected={isActive}
+      {...restProps}
     >
       {children}
     </li>
