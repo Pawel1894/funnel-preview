@@ -69,13 +69,13 @@ export function isViewMode(value: string): value is ViewMode {
   return value === "desktop" || value === "mobile";
 }
 
-export const previewViewportSizes: Record<ViewMode, { width: string; minHeight: string }> = {
+export const previewViewportSizes: Record<ViewMode, { width: number; minHeight: number }> = {
   mobile: {
-    width: "375px",
-    minHeight: "600px",
+    width: 375,
+    minHeight: 600,
   },
   desktop: {
-    width: "1280px",
-    minHeight: "800px",
+    width: 1280,
+    minHeight: 800,
   },
 };

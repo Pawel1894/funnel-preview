@@ -16,10 +16,12 @@ export function FunnelError({ error, onClose }: FunnelErrorProps) {
 
   return (
     <div className="relative">
-      <Button onClick={onClose} className="absolute right-2 top-2 z-10" variant="ghost">
-        <XMarkIcon className="h-4 w-4" />
-        <span className="sr-only">Close</span>
-      </Button>
+      {onClose && (
+        <Button onClick={onClose} className="absolute right-2 top-2 z-10" variant="ghost">
+          <XMarkIcon className="h-4 w-4" />
+          <span className="sr-only">Close</span>
+        </Button>
+      )}
       <Banner title={error.message} variant="error" className="overflow-auto h-min max-h-60">
         <ol className="list-decimal space-y-2 px-4">
           {displayIssues.map((issue, index) => (

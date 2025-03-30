@@ -3,15 +3,9 @@ import { BlockComponentProps } from "../block-registry";
 
 export function ImageBlock({ block }: BlockComponentProps<ImageBlockType>) {
   return (
-    <div className="w-full">
-      <div className="relative rounded-2xl overflow-hidden">
-        <img
-          src={block.src}
-          alt={block.alt}
-          className="w-full h-auto object-cover opacity-0 transition-opacity duration-300"
-          onLoad={(e) => ((e.target as HTMLImageElement).style.opacity = "1")}
-          loading="lazy"
-        />
+    <div className="">
+      <div className="relative rounded-2xl overflow-hidden shadow-lg w-full max-w-md sm:max-w-xl md:max-w-screen-md lg:max-w-screen-lg xl:max-w-screen-xl 2xl:max-w-screen-2xl mx-auto">
+        <img src={block.src} alt={block.alt || ""} className="w-full h-full object-cover" />
       </div>
     </div>
   );

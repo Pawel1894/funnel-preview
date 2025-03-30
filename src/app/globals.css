@@ -19,6 +19,9 @@
   --color-destructive-foreground: rgb(255, 255, 255);
 
   --font-sans: var(--font-geist-sans);
+
+  --breakpoint-3xl: 120rem;
+  --spacing-3xl: 120rem;
 }
 
 @layer base {
@@ -26,3 +29,4 @@
     @apply bg-background text-foreground font-sans antialiased;
   }
 }
+

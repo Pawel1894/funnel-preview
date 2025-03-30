@@ -49,7 +49,7 @@ export function FunnelViewer({
       </div>
 
       <div className="flex gap-4 w-full flex-1 min-h-[600px] mt-4">
-        <div className="hidden md:block min-w-[250px] w-1/4">
+        <div className="hidden md:block min-w-[250px] max-w-[350px] w-1/4">
           <FunnelSidebar onPageSelection={onPageChange} pages={funnel.pages} currentPage={currentPage} />
         </div>
 

@@ -27,13 +27,18 @@ export function PageRenderer({ page, bgColor, viewMode = "mobile" }: PageRendere
         <div
           className="p-16 mx-auto flex flex-col gap-14"
           style={{
-            width: currentViewport.width,
-            minHeight: currentViewport.minHeight,
+            width: `${currentViewport.width}px`,
+            minHeight: `${currentViewport.minHeight}px`,
             backgroundColor: bgColor,
           }}
         >
           {page.blocks.map((block) => (
-            <BlockRenderer key={block.id} block={block} bgColor={bgColor} />
+            <BlockRenderer
+              key={block.id}
+              block={block}
+              bgColor={bgColor}
+              containerWidth={currentViewport.width}
+            />
           ))}
         </div>
       </div>

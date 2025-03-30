@@ -1,27 +1,22 @@
 import { Block } from "../funnel";
-import { TextBlock as TextBlockComponent } from "./blocks/text-block";
-import { ImageBlock as ImageBlockComponent } from "./blocks/image-block";
-import { ListBlock as ListBlockComponent } from "./blocks/list-block";
-import { ButtonBlock as ButtonBlockComponent } from "./blocks/button-block";
+import { ButtonBlock } from "./blocks/button-block";
+import { ImageBlock } from "./blocks/image-block";
+import { ListBlock } from "./blocks/list-block";
+import { TextBlock } from "./blocks/text-block";
 
 export type BlockComponentProps<T extends Block> = {
   block: T;
   bgColor: string;
+  containerWidth: number;
 };
 
-type BlockRegistry = {
-  [K in Block["type"]]: React.ComponentType<BlockComponentProps<Extract<Block, { type: K }>>>;
-};
+const blockComponents = {
+  text: TextBlock,
+  image: ImageBlock,
+  list: ListBlock,
+  button: ButtonBlock,
+} as const;
 
-const registry: BlockRegistry = {
-  text: TextBlockComponent,
-  image: ImageBlockComponent,
-  list: ListBlockComponent,
-  button: ButtonBlockComponent,
-};
-
-export function getBlockRenderer<T extends Block["type"]>(
-  blockType: T
-): React.ComponentType<{ block: Extract<Block, { type: T }>; bgColor: string }> {
-  return registry[blockType];
+export function getBlockRenderer<T extends Block["type"]>(type: T) {
+  return blockComponents[type] as React.ComponentType<BlockComponentProps<Extract<Block, { type: T }>>>;
 }

@@ -51,7 +51,7 @@ export function FunnelUploader({ onFunnelLoaded }: FunnelUploaderProps) {
         onDialogOpen={onClearError}
         className="w-full h-min"
       />
-      {uploadError && <FunnelError error={uploadError} />}
+      {uploadError && <FunnelError error={uploadError} onClose={onClearError} />}
     </div>
   );
 }
