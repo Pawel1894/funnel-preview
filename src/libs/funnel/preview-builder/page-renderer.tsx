@@ -1,14 +1,18 @@
-import { Page } from "../funnel";
+import { Page, previewViewportSizes, ViewMode } from "../funnel";
 import { BlockRenderer } from "./block-renderer";
 
 type PageRendererProps = {
   page?: Page;
+  viewMode?: ViewMode;
+  bgColor: string;
 };
 
-export function PageRenderer({ page }: PageRendererProps) {
+export function PageRenderer({ page, bgColor, viewMode = "mobile" }: PageRendererProps) {
+  const currentViewport = previewViewportSizes[viewMode];
+
   if (!page || !page.blocks || page.blocks.length === 0) {
     return (
-      <div className="flex-1 flex items-center justify-center min-h-[500px] w-full bg-background border border-muted rounded-lg">
+      <div className="flex-1 flex items-center justify-center border border-muted rounded-lg bg-background">
         <div className="text-center space-y-2">
           <p className="text-lg font-medium text-muted-foreground">No content</p>
           <p className="text-sm text-muted-foreground">This page is empty. Add some blocks to get started.</p>
@@ -18,10 +22,21 @@ export function PageRenderer({ page }: PageRendererProps) {
   }
 
   return (
-    <div className="p-4 border border-muted rounded-md h-full overflow-auto flex-col">
-      {page.blocks.map((block, index) => {
-        return <BlockRenderer key={index} block={block} />;
-      })}
+    <div className="flex-1 border border-muted rounded-lg overflow-hidden md:p-4 h-inherit">
+      <div className="h-full overflow-auto">
+        <div
+          className="p-16 mx-auto"
+          style={{
+            width: currentViewport.width,
+            minHeight: currentViewport.minHeight,
+            backgroundColor: bgColor,
+          }}
+        >
+          {page.blocks.map((block) => (
+            <BlockRenderer key={block.id} block={block} />
+          ))}
+        </div>
+      </div>
     </div>
   );
 }

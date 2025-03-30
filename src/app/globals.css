@@ -1,6 +1,8 @@
 @import "tailwindcss";
 
 @theme inline {
+  --height-inherit: inherit;
+
   --color-background: rgb(15, 23, 42);
   --color-foreground: rgb(226, 232, 240);
 

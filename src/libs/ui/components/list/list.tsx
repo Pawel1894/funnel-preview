@@ -21,7 +21,7 @@ type ListProps = {
   ordered?: boolean;
   onSelect?: (id: string) => void;
   className?: string;
-  initialSelectedId?: string;
+  selectedItem?: string;
 };
 
 const listVariants = cva("w-full", {
@@ -36,7 +36,7 @@ const listVariants = cva("w-full", {
   },
 });
 
-export function List({ children, ordered = false, onSelect, className, initialSelectedId }: ListProps) {
+export function List({ children, ordered = false, onSelect, className, selectedItem }: ListProps) {
   const {
     selectedItemId,
     focusedItemId,
@@ -45,7 +45,10 @@ export function List({ children, ordered = false, onSelect, className, initialSe
     handleItemFocus,
     registerItem,
     handleKeyDown,
-  } = useListNavigation({ onSelect, initialSelectedId });
+  } = useListNavigation({
+    onSelect,
+    selectedItem,
+  });
 
   const Tag = ordered ? "ol" : "ul";
 

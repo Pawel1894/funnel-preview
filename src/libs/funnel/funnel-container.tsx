@@ -27,7 +27,7 @@ export function FunnelContainer() {
     <div className="flex flex-col flex-1">
       <div className="shadow-md border-b-1 border-b-muted">
         <FunnelHeader
-          classNames="max-w-[1440px] mx-auto"
+          classNames="max-w-[1920px] mx-auto"
           funnelTitle={funnel?.name}
           pagination={
             funnel && {
@@ -37,7 +37,7 @@ export function FunnelContainer() {
           }
         />
       </div>
-      <div className="p-4 flex-1 flex justify-center h-full w-full max-w-[1440px] mx-auto">
+      <div className="p-4 flex-1 flex justify-center h-full w-full max-w-[1920px] mx-auto">
         {!funnel ? (
           <FunnelUploader onFunnelLoaded={handleFunnelLoaded} />
         ) : (

@@ -4,10 +4,11 @@ import { createPageName } from "./pages";
 
 type FunnelSidebarProps = {
   pages: Page[];
+  currentPage?: Page;
   onPageSelection: (pageId: string) => void;
 };
 
-export function FunnelSidebar({ pages, onPageSelection }: FunnelSidebarProps) {
+export function FunnelSidebar({ pages, onPageSelection, currentPage }: FunnelSidebarProps) {
   const hasPages = pages && pages.length > 0;
 
   return (
@@ -15,7 +16,7 @@ export function FunnelSidebar({ pages, onPageSelection }: FunnelSidebarProps) {
       <h2 className="text-lg font-semibold">Funnel pages</h2>
       <nav className="mt-4 space-y-2">
         {hasPages ? (
-          <List className="w-full" initialSelectedId={pages[0].id} onSelect={onPageSelection}>
+          <List className="w-full" selectedItem={currentPage?.id} onSelect={onPageSelection}>
             {pages.map((page, i) => (
               <ListItem title={createPageName(i)} className="truncate" key={page.id} id={page.id}>
                 {createPageName(i)}

@@ -18,14 +18,13 @@ export function PageSelectionDropdown({
       className="w-full"
     >
       <DropdownContent>
-        <List>
+        <List selectedItem={currentPage?.id} onSelect={onPageChange}>
           {pages.map((page, i) => (
             <ListItem
               key={page.id}
               title={createPageName(i)}
               className="truncate"
               id={page.id}
-              onClick={() => onPageChange(page.id)}
             >
               {createPageName(i)}
             </ListItem>

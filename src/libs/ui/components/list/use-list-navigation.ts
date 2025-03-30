@@ -1,12 +1,11 @@
 import { useState } from "react";
 
 type UseListNavigationProps = {
-  initialSelectedId?: string;
+  selectedItem?: string;
   onSelect?: (id: string) => void;
 };
 
-export function useListNavigation({ onSelect, initialSelectedId }: UseListNavigationProps = {}) {
-  const [selectedItemId, setSelectedItemId] = useState<string | null>(initialSelectedId || null);
+export function useListNavigation({ onSelect, selectedItem }: UseListNavigationProps = {}) {
   const [focusedItemId, setFocusedItemId] = useState<string | null>(null);
   const [itemIds, setItemIds] = useState<string[]>([]);
 
@@ -20,7 +19,6 @@ export function useListNavigation({ onSelect, initialSelectedId }: UseListNaviga
   };
 
   const handleItemSelect = (id: string) => {
-    setSelectedItemId(id);
     onSelect?.(id);
   };
 
@@ -63,7 +61,7 @@ export function useListNavigation({ onSelect, initialSelectedId }: UseListNaviga
   };
 
   return {
-    selectedItemId,
+    selectedItemId: selectedItem || null,
     focusedItemId,
     itemIds,
     handleItemSelect,
