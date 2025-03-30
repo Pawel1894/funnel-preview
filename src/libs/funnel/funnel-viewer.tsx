@@ -1,23 +1,60 @@
 "use client";
 
-import { Funnel, Page } from "./funnel";
+import { useState } from "react";
+import { Funnel, Page, ViewMode } from "./funnel";
 import { FunnelSidebar } from "./funnel-sidebar";
 import { PageRenderer } from "./preview-builder/page-renderer";
+import { FunnelPagination } from "./funnel-pagination";
+import { PageSelectionDropdown } from "./page-selection-dropdown";
+import { FunnelSelectionDropdown } from "./funnel-selection-dropdown";
+import { DeviceViewSwitcher } from "./device-view-switcher";
+import { FunnelError } from "./funnel-error";
 
-interface FunnelViewerProps {
+type FunnelViewerProps = {
   funnel: Funnel;
   currentPage?: Page;
   onPageChange: (pageId: string) => void;
-}
+  onFunnelClear?: () => void;
+  onFunnelUpload?: (funnel: Funnel) => void;
+};
 
-export function FunnelViewer({ funnel, currentPage, onPageChange }: FunnelViewerProps) {
+export function FunnelViewer({
+  funnel,
+  currentPage,
+  onPageChange,
+  onFunnelClear,
+  onFunnelUpload,
+}: FunnelViewerProps) {
+  const [viewMode, setViewMode] = useState<ViewMode>("mobile");
+  const [error, setError] = useState<{ message: string; issues: string[] } | null>(null);
+
   return (
-    <div className="flex gap-4 w-full h-auto">
-      <div className="hidden md:block min-w-[250px] w-1/4">
-        <FunnelSidebar onPageSelection={onPageChange} pages={funnel.pages} />
+    <div className="flex flex-col gap-4 w-full">
+      <div className="flex flex-col gap-4">
+        <div className="md:hidden flex items-center justify-between">
+          <PageSelectionDropdown pages={funnel.pages} currentPage={currentPage} onPageChange={onPageChange} />
+          <FunnelPagination pages={funnel.pages} currentPage={currentPage} onPageChange={onPageChange} />
+        </div>
+        <div className="flex flex-col gap-4">
+          <div className="flex items-center justify-between">
+            <FunnelSelectionDropdown
+              onClear={onFunnelClear}
+              onFunnelLoaded={onFunnelUpload}
+              onError={setError}
+            />
+            <DeviceViewSwitcher viewMode={viewMode} onChange={setViewMode} />
+          </div>
+          {error && <FunnelError error={error} onClose={() => setError(null)} />}
+        </div>
       </div>
 
-      {currentPage && <PageRenderer page={currentPage} />}
+      <div className="flex gap-4 w-full">
+        <div className="hidden md:block min-w-[250px] w-1/4">
+          <FunnelSidebar onPageSelection={onPageChange} pages={funnel.pages} />
+        </div>
+
+        <PageRenderer page={currentPage} />
+      </div>
     </div>
   );
 }

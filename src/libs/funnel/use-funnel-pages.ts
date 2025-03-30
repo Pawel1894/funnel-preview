@@ -1,14 +1,8 @@
-import { useMemo, useState, useEffect } from "react";
+import { useMemo, useState } from "react";
 import { Page } from "./funnel";
 
 export function useFunnelPages(pages?: Page[]) {
   const [currentPage, setCurrentPage] = useState<Page | undefined>();
-
-  useEffect(() => {
-    if (!currentPage || !pages?.find((page) => page.id === currentPage.id)) {
-      setCurrentPage(pages?.[0]);
-    }
-  }, [pages, currentPage]);
 
   const handlePageChange = (pageId: string) => {
     const page = pages?.find((page) => page.id === pageId);
@@ -31,5 +25,6 @@ export function useFunnelPages(pages?: Page[]) {
     currentPageNumber,
     totalPages: pages?.length ?? 0,
     handlePageChange,
+    setCurrentPage,
   };
 }

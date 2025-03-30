@@ -34,14 +34,6 @@ describe("useFunnelPages", () => {
     },
   ];
 
-  it("should initialize with the first page", () => {
-    const { result } = renderHook(() => useFunnelPages(mockPages));
-
-    expect(result.current.currentPage).toEqual(mockPages[0]);
-    expect(result.current.currentPageNumber).toBe(1);
-    expect(result.current.totalPages).toBe(3);
-  });
-
   it("should handle page changes correctly", () => {
     const { result } = renderHook(() => useFunnelPages(mockPages));
 
@@ -58,6 +50,19 @@ describe("useFunnelPages", () => {
 
     expect(result.current.currentPage).toEqual(mockPages[2]);
     expect(result.current.currentPageNumber).toBe(3);
+  });
+
+  it("should set current page when setCurrentPage is called", () => {
+    const { result } = renderHook(() => useFunnelPages(mockPages));
+
+    expect(result.current.currentPage).toBeUndefined();
+
+    act(() => {
+      result.current.setCurrentPage(mockPages[1]);
+    });
+
+    expect(result.current.currentPage).toEqual(mockPages[1]);
+    expect(result.current.currentPageNumber).toBe(2);
   });
 
   it("should not change page when an invalid page ID is provided", () => {
@@ -94,51 +99,5 @@ describe("useFunnelPages", () => {
     expect(result.current.currentPage).toBeUndefined();
     expect(result.current.currentPageNumber).toBe(0);
     expect(result.current.totalPages).toBe(0);
-  });
-
-  it("should update when pages array changes", () => {
-    const { result, rerender } = renderHook((props) => useFunnelPages(props.pages), {
-      initialProps: { pages: mockPages },
-    });
-
-    expect(result.current.totalPages).toBe(3);
-
-    act(() => {
-      result.current.handlePageChange("page2");
-    });
-
-    expect(result.current.currentPage).toEqual(mockPages[1]);
-
-    const newPages: Page[] = [
-      {
-        id: "page4",
-        blocks: [
-          {
-            id: "block1",
-            type: "text",
-            text: "Hello World",
-            color: "#000000",
-            align: "left",
-          },
-        ],
-      },
-      {
-        id: "page5",
-        blocks: [
-          {
-            id: "block2",
-            type: "button",
-            text: "Click Me",
-            color: "white",
-            bgColor: "blue",
-          },
-        ],
-      },
-    ];
-
-    rerender({ pages: newPages });
-
-    expect(result.current.totalPages).toBe(2);
-    expect(result.current.currentPage).toEqual(newPages[0]);
   });
 });

@@ -1,4 +1,4 @@
-import { Button, ChevronLeftIcon, ChevronRightIcon } from "../ui";
+import { Button, ChevronLeftIcon, ChevronRightIcon } from "@/libs/ui";
 import { Page } from "./funnel";
 
 export function FunnelPagination({
@@ -26,18 +26,10 @@ export function FunnelPagination({
 
   return (
     <div className="flex items-center gap-2">
-      <Button
-        onClick={handlePrevious}
-        disabled={currentIndex === 0}
-        className="p-2"
-      >
+      <Button onClick={handlePrevious} disabled={currentIndex === 0} className="p-2">
         <ChevronLeftIcon className="h-4 w-4" />
       </Button>
-      <Button
-        onClick={handleNext}
-        disabled={currentIndex === pages.length - 1}
-        className="p-2"
-      >
+      <Button onClick={handleNext} disabled={currentIndex === pages.length - 1} className="p-2">
         <ChevronRightIcon className="h-4 w-4" />
       </Button>
     </div>

@@ -1,5 +1,6 @@
 import { List, ListItem } from "@/libs/ui";
 import { Page } from "./funnel";
+import { createPageName } from "./pages";
 
 type FunnelSidebarProps = {
   pages: Page[];
@@ -16,19 +17,15 @@ export function FunnelSidebar({ pages, onPageSelection }: FunnelSidebarProps) {
         {hasPages ? (
           <List className="w-full" initialSelectedId={pages[0].id} onSelect={onPageSelection}>
             {pages.map((page, i) => (
-              <ListItem title={getPageTitle(i)} className="truncate" key={page.id} id={page.id}>
-                {getPageTitle(i)}
+              <ListItem title={createPageName(i)} className="truncate" key={page.id} id={page.id}>
+                {createPageName(i)}
               </ListItem>
             ))}
           </List>
         ) : (
-          <span>Uploaded funnel has no pages.</span>
+          <span className="text-sm text-muted-foreground">No pages found</span>
         )}
       </nav>
     </aside>
   );
-}
-
-function getPageTitle(index: number) {
-  return `Page no. ${index + 1}`;
 }

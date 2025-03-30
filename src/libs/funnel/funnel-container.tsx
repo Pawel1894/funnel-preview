@@ -9,10 +9,18 @@ import { useFunnelPages } from "./use-funnel-pages";
 
 export function FunnelContainer() {
   const [funnel, setFunnel] = useState<Funnel>();
-  const { currentPage, currentPageNumber, totalPages, handlePageChange } = useFunnelPages(funnel?.pages);
+  const { currentPage, currentPageNumber, totalPages, handlePageChange, setCurrentPage } = useFunnelPages(
+    funnel?.pages
+  );
 
   const handleFunnelLoaded = (loadedFunnel: Funnel) => {
     setFunnel(loadedFunnel);
+    setCurrentPage(loadedFunnel.pages[0]);
+  };
+
+  const handleFunnelClear = () => {
+    setFunnel(undefined);
+    setCurrentPage(undefined);
   };
 
   return (
@@ -33,7 +41,13 @@ export function FunnelContainer() {
         {!funnel ? (
           <FunnelUploader onFunnelLoaded={handleFunnelLoaded} />
         ) : (
-          <FunnelViewer funnel={funnel} currentPage={currentPage} onPageChange={handlePageChange} />
+          <FunnelViewer
+            funnel={funnel}
+            currentPage={currentPage}
+            onPageChange={handlePageChange}
+            onFunnelClear={handleFunnelClear}
+            onFunnelUpload={handleFunnelLoaded}
+          />
         )}
       </div>
     </div>
