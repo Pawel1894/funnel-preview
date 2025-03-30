@@ -9,3 +9,5 @@ export { UploadIcon } from "./icons/upload-icon";
 export { ChevronDownIcon } from "./icons/chevron-down-icon";
 export { MobileIcon as PhoneIcon } from "./icons/mobile-icon";
 export { DesktopIcon } from "./icons/desktop-icon";
+export { ChevronRightIcon } from "./icons/chevron-right-icon";
+export { ChevronLeftIcon } from "./icons/chevron-left-icon";
