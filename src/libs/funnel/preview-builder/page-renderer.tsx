@@ -37,7 +37,7 @@ export function PageRenderer({ page, bgColor, viewMode = "mobile" }: PageRendere
               key={block.id}
               block={block}
               bgColor={bgColor}
-              containerWidth={currentViewport.width}
+              viewportWidth={currentViewport.width}
             />
           ))}
         </div>
