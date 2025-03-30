@@ -2,8 +2,8 @@ import { cva } from "class-variance-authority";
 import { twMerge } from "tailwind-merge";
 
 export type SwitcherOption = {
-  id: string;
-  label: string;
+  value: string;
+  label?: string;
   icon?: React.ReactNode;
 };
 
@@ -14,19 +14,16 @@ export type SwitcherProps = {
   className?: string;
 };
 
-const switcherVariants = cva(
-  "inline-flex items-center gap-1 rounded-md border border-muted p-1 text-sm",
-  {
-    variants: {
-      variant: {
-        primary: "bg-background",
-      },
+const switcherVariants = cva("inline-flex items-center gap-1 rounded-md border border-muted p-1 text-sm", {
+  variants: {
+    variant: {
+      primary: "bg-background",
     },
-    defaultVariants: {
-      variant: "primary",
-    },
-  }
-);
+  },
+  defaultVariants: {
+    variant: "primary",
+  },
+});
 
 const optionVariants = cva(
   "cursor-pointer inline-flex items-center gap-2 px-3 py-1.5 rounded transition-colors",
@@ -48,14 +45,14 @@ export function Switcher({ options, value, onChange, className }: SwitcherProps)
     <div className={twMerge(switcherVariants(), className)}>
       {options.map((option) => (
         <button
-          key={option.id}
-          onClick={() => onChange(option.id)}
-          className={optionVariants({ active: value === option.id })}
+          key={option.value}
+          onClick={() => onChange(option.value)}
+          className={optionVariants({ active: value === option.value })}
         >
           {option.icon}
-          <span>{option.label}</span>
+          {option.label && <span>{option.label}</span>}
         </button>
       ))}
     </div>
   );
-} 
+}

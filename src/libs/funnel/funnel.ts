@@ -62,3 +62,9 @@ export type ButtonBlock = z.infer<typeof ButtonBlockSchema>;
 export type Block = z.infer<typeof BlockSchema>;
 export type Page = z.infer<typeof PageSchema>;
 export type Funnel = z.infer<typeof FunnelSchema>;
+
+export type ViewMode = "desktop" | "mobile";
+
+export function isViewMode(value: string): value is ViewMode {
+  return value === "desktop" || value === "mobile";
+}

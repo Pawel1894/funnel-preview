@@ -7,3 +7,5 @@ export { Switcher } from "./components/switcher/switcher";
 
 export { UploadIcon } from "./icons/upload-icon";
 export { ChevronDownIcon } from "./icons/chevron-down-icon";
+export { MobileIcon as PhoneIcon } from "./icons/mobile-icon";
+export { DesktopIcon } from "./icons/desktop-icon";

@@ -21,12 +21,12 @@ const meta: Meta<typeof Switcher> = {
             options={[
               {
                 icon: <UploadIcon />,
-                id: "upload",
+                value: "upload",
                 label: "Upload",
               },
               {
                 icon: <UploadIcon />,
-                id: "download",
+                value: "download",
                 label: "Download",
               },
             ]}
@@ -39,11 +39,11 @@ const meta: Meta<typeof Switcher> = {
           <Switcher
             options={[
               {
-                id: "upload",
+                value: "upload",
                 label: "Upload",
               },
               {
-                id: "download",
+                value: "download",
                 label: "Download",
               },
             ]}
