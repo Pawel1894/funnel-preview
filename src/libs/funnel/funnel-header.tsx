@@ -18,11 +18,9 @@ export function FunnelHeader({ funnelTitle, pagination, classNames }: FunnelHead
         <h1 title={funnelTitle} className="text-xl font-bold truncate">
           {funnelTitle ?? "Funnel preview"}
         </h1>
-        {pagination && (
-          <span className="text-sm text-muted-foreground">
-            Page {pagination.current} of {pagination.total}
-          </span>
-        )}
+        <span className="text-sm text-muted-foreground">
+          {pagination ? `Page ${pagination.current} of ${pagination.total}` : "No funnel uploaded"}
+        </span>
       </div>
     </div>
   );
