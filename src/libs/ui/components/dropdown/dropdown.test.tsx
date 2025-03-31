@@ -47,7 +47,7 @@ describe("Dropdown", () => {
     expect(screen.getByText("Option 2")).toBeInTheDocument();
 
     await userEvent.click(dropdownButton);
-    await waitFor(() => {
+    waitFor(() => {
       expect(dropdownButton).toHaveAttribute("aria-expanded", "false");
     });
   });
@@ -68,7 +68,7 @@ describe("Dropdown", () => {
     expect(screen.getByText("Option 1")).toBeInTheDocument();
 
     await userEvent.click(document.body);
-    await waitFor(() => {
+    waitFor(() => {
       expect(dropdownButton).toHaveAttribute("aria-expanded", "false");
     });
   });

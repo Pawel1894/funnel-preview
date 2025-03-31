@@ -1,4 +1,4 @@
-import { render, screen, fireEvent, act, userEvent, waitFor } from "@/test/test-utils";
+import { render, screen, act, userEvent, waitFor } from "@/test/test-utils";
 import { List, ListItem } from "./list";
 
 describe("List", () => {
@@ -103,19 +103,19 @@ describe("List", () => {
       item1.focus();
     });
 
-    fireEvent.keyDown(item1, { key: "ArrowDown" });
+    await userEvent.keyboard("{ArrowDown}");
     expect(document.activeElement).toHaveTextContent("Item 2");
 
-    fireEvent.keyDown(document.activeElement as Element, { key: "ArrowDown" });
+    await userEvent.keyboard("{ArrowDown}");
     expect(document.activeElement).toHaveTextContent("Item 3");
 
-    fireEvent.keyDown(document.activeElement as Element, { key: "ArrowDown" });
+    await userEvent.keyboard("{ArrowDown}");
     expect(document.activeElement).toHaveTextContent("Item 1");
 
-    fireEvent.keyDown(document.activeElement as Element, { key: "ArrowUp" });
+    await userEvent.keyboard("{ArrowUp}");
     expect(document.activeElement).toHaveTextContent("Item 3");
 
-    fireEvent.keyDown(document.activeElement as Element, { key: "Enter" });
+    await userEvent.keyboard("{Enter}");
 
     waitFor(() => {
       expect(onSelectMock).toHaveBeenCalledWith("item3");

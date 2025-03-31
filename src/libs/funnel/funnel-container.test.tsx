@@ -1,4 +1,4 @@
-import { render, screen, fireEvent, waitFor } from "@/test/test-utils";
+import { render, screen, waitFor, userEvent } from "@/test/test-utils";
 import { FunnelContainer } from "./funnel-container";
 import { Funnel } from "./funnel";
 
@@ -52,9 +52,9 @@ describe("FunnelContainer", () => {
     
     const file = createTestFile(JSON.stringify(mockFunnel));
     const fileInput = screen.getByTestId("file-upload-input");
-    fireEvent.change(fileInput, { target: { files: [file] } });
+    await userEvent.upload(fileInput, file);
     
-    await waitFor(() => {
+    waitFor(() => {
       expect(screen.getByText("Test Funnel")).toBeInTheDocument();
       expect(screen.getByText("Page 1 Content")).toBeInTheDocument();
     });
@@ -65,19 +65,19 @@ describe("FunnelContainer", () => {
     
     const file = createTestFile(JSON.stringify(mockFunnel));
     const fileInput = screen.getByTestId("file-upload-input");
-    fireEvent.change(fileInput, { target: { files: [file] } });
+    await userEvent.upload(fileInput, file);
     
-    await waitFor(() => {
+    waitFor(() => {
       expect(screen.getByText("Test Funnel")).toBeInTheDocument();
     });
     
     const dropdownButton = screen.getByText("Change Funnel");
-    fireEvent.click(dropdownButton);
+    await userEvent.click(dropdownButton);
     
     const clearButton = screen.getByText("Clear Current Funnel");
-    fireEvent.click(clearButton);
+    await userEvent.click(clearButton);
     
-    await waitFor(() => {
+    waitFor(() => {
       expect(screen.getByText("Upload Funnel JSON")).toBeInTheDocument();
     });
   });
@@ -87,23 +87,23 @@ describe("FunnelContainer", () => {
     
     const file = createTestFile(JSON.stringify(mockFunnel));
     const fileInput = screen.getByTestId("file-upload-input");
-    fireEvent.change(fileInput, { target: { files: [file] } });
+    await userEvent.upload(fileInput, file);
     
-    await waitFor(() => {
+    waitFor(() => {
       expect(screen.getByText("Page 1 Content")).toBeInTheDocument();
     });
     
     const page2Button = screen.getByText("Page no. 2");
-    fireEvent.click(page2Button);
+    await userEvent.click(page2Button);
     
-    await waitFor(() => {
+    waitFor(() => {
       expect(screen.getByText("Page 2 Content")).toBeInTheDocument();
     });
     
     const page1Button = screen.getByText("Page no. 1");
-    fireEvent.click(page1Button);
+    await userEvent.click(page1Button);
     
-    await waitFor(() => {
+    waitFor(() => {
       expect(screen.getByText("Page 1 Content")).toBeInTheDocument();
     });
   });
@@ -113,9 +113,9 @@ describe("FunnelContainer", () => {
     
     const file = createTestFile('{ invalid json }');
     const fileInput = screen.getByTestId("file-upload-input");
-    fireEvent.change(fileInput, { target: { files: [file] } });
+    await userEvent.upload(fileInput, file);
     
-    await waitFor(() => {
+    waitFor(() => {
       expect(screen.getByText(/invalid json format/i)).toBeInTheDocument();
     });
   });
@@ -125,16 +125,16 @@ describe("FunnelContainer", () => {
     
     const file = createTestFile(JSON.stringify(mockFunnel));
     const fileInput = screen.getByTestId("file-upload-input");
-    fireEvent.change(fileInput, { target: { files: [file] } });
+    await userEvent.upload(fileInput, file);
     
-    await waitFor(() => {
+    waitFor(() => {
       expect(screen.getByText(/page 1 of 2/i)).toBeInTheDocument();
     });
     
     const page2Button = screen.getByText("Page no. 2");
-    fireEvent.click(page2Button);
+    await userEvent.click(page2Button);
     
-    await waitFor(() => {
+    waitFor(() => {
       expect(screen.getByText(/page 2 of 2/i)).toBeInTheDocument();
     });
   });
