@@ -1,6 +1,7 @@
 import { useState, useCallback, createContext, useContext } from "react";
 import { cva } from "class-variance-authority";
 import { twMerge } from "tailwind-merge";
+import { motion, AnimatePresence } from "framer-motion";
 
 import { ChevronDownIcon } from "@/libs/ui";
 
@@ -91,10 +92,20 @@ export function Dropdown({
   return (
     <DropdownContext.Provider value={{ isOpen, setIsOpen, closeAfterSelect: closeOnSelect }}>
       <div className="relative" ref={dropdownRef}>
-        <button type="button" onClick={toggleDropdown} className={buttonStyles}>
+        <motion.button 
+          type="button" 
+          onClick={toggleDropdown} 
+          className={buttonStyles}
+          whileTap={{ scale: 0.98 }}
+        >
           <span>{selectedText ?? placeholder}</span>
-          <ChevronDownIcon />
-        </button>
+          <motion.span
+            animate={{ rotate: isOpen ? 180 : 0 }}
+            transition={{ duration: 0.2 }}
+          >
+            <ChevronDownIcon />
+          </motion.span>
+        </motion.button>
         {children}
       </div>
     </DropdownContext.Provider>
@@ -109,16 +120,23 @@ export type DropdownContentProps = {
 export function DropdownContent({ children, className }: DropdownContentProps) {
   const { isOpen, closeAfterSelect, setIsOpen } = useDropdownContext();
 
-  if (!isOpen) return null;
-
   return (
-    <div
-      className={twMerge(
-        "absolute z-10 w-full mt-1 bg-background border border-muted rounded-md shadow-lg",
-        className
+    <AnimatePresence>
+      {isOpen && (
+        <motion.div
+          initial={{ opacity: 0, y: -5 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: -5 }}
+          transition={{ duration: 0.15 }}
+          className={twMerge(
+            "absolute z-10 w-full mt-1 bg-background border border-muted rounded-md shadow-lg",
+            className
+          )}
+          onClick={() => closeAfterSelect && setIsOpen(false)}
+        >
+          {children}
+        </motion.div>
       )}
-    >
-      <div onClick={() => closeAfterSelect && setIsOpen(false)}>{children}</div>
-    </div>
+    </AnimatePresence>
   );
 }

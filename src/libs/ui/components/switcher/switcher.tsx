@@ -1,5 +1,6 @@
 import { cva } from "class-variance-authority";
 import { twMerge } from "tailwind-merge";
+import { motion } from "framer-motion";
 
 export type SwitcherOption = {
   value: string;
@@ -42,17 +43,19 @@ const optionVariants = cva(
 
 export function Switcher({ options, value, onChange, className }: SwitcherProps) {
   return (
-    <div className={twMerge(switcherVariants(), className)}>
+    <motion.div className={twMerge(switcherVariants(), className)}>
       {options.map((option) => (
-        <button
+        <motion.button
           key={option.value}
           onClick={() => onChange(option.value)}
           className={optionVariants({ active: value === option.value })}
+          whileHover={{ scale: 1.02 }}
+          whileTap={{ scale: 0.98 }}
         >
           {option.icon}
           {option.label && <span>{option.label}</span>}
-        </button>
+        </motion.button>
       ))}
-    </div>
+    </motion.div>
   );
 }

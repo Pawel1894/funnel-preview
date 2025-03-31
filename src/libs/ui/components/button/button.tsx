@@ -1,13 +1,15 @@
 import { cva } from "class-variance-authority";
 import { twMerge } from "tailwind-merge";
+import { motion, HTMLMotionProps } from "framer-motion";
 
-export type ButtonProps = React.ButtonHTMLAttributes<HTMLButtonElement> & {
+export type ButtonProps = Omit<HTMLMotionProps<"button">, "disabled"> & {
   variant?: "primary" | "outline" | "ghost";
   size?: "sm" | "md" | "lg";
+  isDisabled?: boolean;
 };
 
 const buttonVariants = cva(
-  "cursor-pointer inline-flex items-center justify-center rounded-md font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50 focus-visible:ring-offset-2 focus-visible:ring-offset-background disabled:pointer-events-none disabled:opacity-50",
+  "cursor-pointer inline-flex items-center justify-center rounded-md font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50 focus-visible:ring-offset-2 focus-visible:ring-offset-background",
   {
     variants: {
       variant: {
@@ -20,16 +22,30 @@ const buttonVariants = cva(
         md: "h-10 px-4 py-2",
         lg: "h-12 px-6 py-3 text-base",
       },
+      disabled: {
+        true: "opacity-50 pointer-events-none",
+        false: "",
+      }
     },
     defaultVariants: {
       variant: "outline",
       size: "md",
+      disabled: false,
     },
   }
 );
 
-export function Button({ className, variant = "outline", size = "md", ...props }: ButtonProps) {
-  const styles = twMerge(buttonVariants({ variant, size, className }));
+export function Button({ className, variant = "outline", size = "md", isDisabled, ...props }: ButtonProps) {
+  const styles = twMerge(buttonVariants({ variant, size, disabled: isDisabled, className }));
 
-  return <button className={styles} {...props} />;
+  return (
+    <motion.button
+      className={styles}
+      whileHover={!isDisabled ? { scale: 1.02 } : undefined}
+      whileTap={!isDisabled ? { scale: 0.98 } : undefined}
+      initial={false}
+      disabled={isDisabled}
+      {...props}
+    />
+  );
 }

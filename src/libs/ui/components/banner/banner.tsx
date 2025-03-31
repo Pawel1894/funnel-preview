@@ -1,5 +1,6 @@
 import { cva } from "class-variance-authority";
 import { twMerge } from "tailwind-merge";
+import { motion } from "framer-motion";
 
 const bannerVariants = cva("rounded-md p-3 border w-full h-full", {
   variants: {
@@ -29,9 +30,16 @@ type BannerProps = {
 
 export function Banner({ variant, title, children, className }: BannerProps) {
   return (
-    <div aria-live="polite" className={twMerge(bannerVariants({ variant }), className)}>
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      transition={{ duration: 0.2 }}
+      aria-live="polite"
+      className={twMerge(bannerVariants({ variant }), className)}
+    >
       {title && <h3 className={titleVariants({ variant })}>{title}</h3>}
       {children}
-    </div>
+    </motion.div>
   );
 }

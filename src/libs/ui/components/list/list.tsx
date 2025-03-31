@@ -3,6 +3,7 @@
 import { createContext, useContext, useEffect, useLayoutEffect, useRef } from "react";
 import { cva } from "class-variance-authority";
 import { twMerge } from "tailwind-merge";
+import { motion, HTMLMotionProps } from "framer-motion";
 import { useListNavigation } from "./use-list-navigation";
 
 type ListContextType = {
@@ -74,10 +75,10 @@ type ListItemProps = {
   children: React.ReactNode;
   id: string;
   className?: string;
-} & React.HTMLAttributes<HTMLLIElement>;
+} & Omit<HTMLMotionProps<"li">, "ref" | "children" | "className">;
 
 const listItemVariants = cva(
-  "px-4 py-2 rounded-md transition-colors cursor-pointer outline-none focus-visible:ring-2 focus-visible:ring-primary/50 focus-visible:ring-offset-2 focus-visible:ring-offset-background",
+  "px-4 py-2 rounded-md cursor-pointer outline-none focus-visible:ring-2 focus-visible:ring-primary/50 focus-visible:ring-offset-2 focus-visible:ring-offset-background transition-colors duration-200",
   {
     variants: {
       active: {
@@ -115,7 +116,7 @@ export function ListItem({ children, id, className, ...restProps }: ListItemProp
   const styles = twMerge(listItemVariants({ active: isActive }), className);
 
   return (
-    <li
+    <motion.li
       ref={itemRef}
       className={styles}
       onClick={() => onSelect(id)}
@@ -124,9 +125,10 @@ export function ListItem({ children, id, className, ...restProps }: ListItemProp
       tabIndex={0}
       role="option"
       aria-selected={isActive}
+      whileTap={{ scale: 0.98 }}
       {...restProps}
     >
       {children}
-    </li>
+    </motion.li>
   );
 }
