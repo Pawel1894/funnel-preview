@@ -36,7 +36,7 @@ export function FunnelViewer({
           <FunnelPagination pages={funnel.pages} currentPage={currentPage} onPageChange={onPageChange} />
         </div>
         <div className="flex flex-col gap-4">
-          <div className="flex items-center justify-between">
+          <div className="flex items-center justify-end gap-4">
             <FunnelSelectionDropdown
               onClear={onFunnelClear}
               onFunnelLoaded={onFunnelUpload}
