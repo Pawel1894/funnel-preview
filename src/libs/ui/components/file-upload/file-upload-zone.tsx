@@ -147,11 +147,12 @@ export function FileUploadZone({
           onChange={handleFileInputChange}
           style={{ display: "none" }}
           disabled={disabled}
+          data-testid="file-upload-input"
         />
         <UploadIcon className="size-14 text-muted-foreground" />
         <h2 className="text-2xl font-semibold text-center">{title}</h2>
         <p className="text-center text-muted-foreground md:px-8 max-w-lg">{description}</p>
-        <Button onClick={openFileDialog} variant="primary" disabled={disabled}>
+        <Button onClick={openFileDialog} variant="primary">
           Select file
         </Button>
       </div>

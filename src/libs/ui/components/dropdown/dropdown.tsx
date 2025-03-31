@@ -59,21 +59,18 @@ export function Dropdown({
 }: DropdownProps) {
   const [isOpen, setIsOpen] = useState(false);
 
-  const dropdownRef = useCallback(
-    (node: HTMLDivElement | null) => {
-      if (node) {
-        const handleClickOutside = (event: MouseEvent) => {
-          if (node && !node.contains(event.target as Node)) {
-            setIsOpen(false);
-          }
-        };
+  const dropdownRef = useCallback((node: HTMLDivElement | null) => {
+    if (node) {
+      const handleClickOutside = (event: MouseEvent) => {
+        if (node && !node.contains(event.target as Node)) {
+          setIsOpen(false);
+        }
+      };
 
-        document.addEventListener("mousedown", handleClickOutside);
-        return () => document.removeEventListener("mousedown", handleClickOutside);
-      }
-    },
-    []
-  );
+      document.addEventListener("mousedown", handleClickOutside);
+      return () => document.removeEventListener("mousedown", handleClickOutside);
+    }
+  }, []);
 
   const toggleDropdown = () => {
     setIsOpen(!isOpen);
@@ -92,17 +89,15 @@ export function Dropdown({
   return (
     <DropdownContext.Provider value={{ isOpen, setIsOpen, closeAfterSelect: closeOnSelect }}>
       <div className="relative" ref={dropdownRef}>
-        <motion.button 
-          type="button" 
-          onClick={toggleDropdown} 
+        <motion.button
+          type="button"
+          onClick={toggleDropdown}
           className={buttonStyles}
           whileTap={{ scale: 0.98 }}
+          aria-expanded={isOpen}
         >
-          <span>{selectedText ?? placeholder}</span>
-          <motion.span
-            animate={{ rotate: isOpen ? 180 : 0 }}
-            transition={{ duration: 0.2 }}
-          >
+          {selectedText ?? placeholder}
+          <motion.span animate={{ rotate: isOpen ? 180 : 0 }} transition={{ duration: 0.2 }}>
             <ChevronDownIcon />
           </motion.span>
         </motion.button>

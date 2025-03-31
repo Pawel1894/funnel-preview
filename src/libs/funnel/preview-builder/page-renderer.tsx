@@ -26,6 +26,7 @@ export function PageRenderer({ page, bgColor, viewMode = "mobile" }: PageRendere
     <div className="flex-1 border border-muted rounded-lg overflow-hidden md:p-4 h-inherit">
       <div className="h-full overflow-auto">
         <motion.div
+          data-testid="page-container"
           animate={{
             width: currentViewport.width,
             minHeight: currentViewport.minHeight,
