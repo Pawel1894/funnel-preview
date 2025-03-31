@@ -1,4 +1,4 @@
-import { render, screen, fireEvent, act, userEvent } from "@/test/test-utils";
+import { render, screen, fireEvent, act, userEvent, waitFor } from "@/test/test-utils";
 import { List, ListItem } from "./list";
 
 describe("List", () => {
@@ -40,6 +40,25 @@ describe("List", () => {
     expect(onSelectMock).toHaveBeenCalledWith("item1");
   });
 
+  it("calls onSelect when enter is clicked", async () => {
+    const onSelectMock = vi.fn();
+
+    render(
+      <List selectedItem="item1" onSelect={onSelectMock}>
+        <ListItem id="item1">Item 1</ListItem>
+        <ListItem id="item2">Item 2</ListItem>
+      </List>
+    );
+
+    const item2 = screen.getByText("Item 2");
+    act(() => {
+      item2.focus();
+    });
+
+    await userEvent.keyboard("{Enter}");
+    expect(onSelectMock).toHaveBeenCalledWith("item2");
+  });
+
   it("handles controlled selection state", async () => {
     const onSelectMock = vi.fn();
 
@@ -51,7 +70,7 @@ describe("List", () => {
     );
 
     const item1 = screen.getByText("Item 1");
-    expect(item1).toHaveAttribute("aria-selected", "true");
+    expect(item1).toHaveAttribute("aria-current", "true");
 
     await userEvent.click(screen.getByText("Item 2"));
     expect(onSelectMock).toHaveBeenCalledWith("item2");
@@ -64,7 +83,7 @@ describe("List", () => {
     );
 
     const item2 = screen.getByText("Item 2");
-    expect(item2).toHaveAttribute("aria-selected", "true");
+    expect(item2).toHaveAttribute("aria-current", "true");
   });
 
   it("handles keyboard navigation", async () => {
@@ -79,6 +98,7 @@ describe("List", () => {
     );
 
     const item1 = screen.getByText("Item 1");
+
     act(() => {
       item1.focus();
     });
@@ -96,7 +116,10 @@ describe("List", () => {
     expect(document.activeElement).toHaveTextContent("Item 3");
 
     fireEvent.keyDown(document.activeElement as Element, { key: "Enter" });
-    expect(onSelectMock).toHaveBeenCalledWith("item3");
+
+    waitFor(() => {
+      expect(onSelectMock).toHaveBeenCalledWith("item3");
+    });
   });
 
   it("maintains focus state independently of selection", async () => {
@@ -115,7 +138,7 @@ describe("List", () => {
     });
 
     expect(document.activeElement).toHaveTextContent("Item 2");
-    expect(screen.getByText("Item 1")).toHaveAttribute("aria-selected", "true");
-    expect(screen.getByText("Item 2")).toHaveAttribute("aria-selected", "false");
+    expect(screen.getByText("Item 1")).toHaveAttribute("aria-current", "true");
+    expect(screen.getByText("Item 2")).toHaveAttribute("aria-current", "false");
   });
 });

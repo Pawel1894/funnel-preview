@@ -2,10 +2,9 @@ import { useState } from "react";
 
 type UseListNavigationProps = {
   selectedItem?: string;
-  onSelect?: (id: string) => void;
 };
 
-export function useListNavigation({ onSelect, selectedItem }: UseListNavigationProps = {}) {
+export function useListNavigation({ selectedItem }: UseListNavigationProps = {}) {
   const [focusedItemId, setFocusedItemId] = useState<string | null>(null);
   const [itemIds, setItemIds] = useState<string[]>([]);
 
@@ -16,10 +15,6 @@ export function useListNavigation({ onSelect, selectedItem }: UseListNavigationP
       }
       return prev;
     });
-  };
-
-  const handleItemSelect = (id: string) => {
-    onSelect?.(id);
   };
 
   const handleItemFocus = (id: string) => {
@@ -52,11 +47,6 @@ export function useListNavigation({ onSelect, selectedItem }: UseListNavigationP
         e.preventDefault();
         focusPreviousItem();
         break;
-      case "Enter":
-        e.preventDefault();
-        if (focusedItemId) {
-          handleItemSelect(focusedItemId);
-        }
     }
   };
 
@@ -64,7 +54,6 @@ export function useListNavigation({ onSelect, selectedItem }: UseListNavigationP
     selectedItemId: selectedItem || null,
     focusedItemId,
     itemIds,
-    handleItemSelect,
     handleItemBlur,
     handleItemFocus,
     registerItem,

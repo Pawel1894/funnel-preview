@@ -3,13 +3,13 @@
 import { createContext, useContext, useEffect, useLayoutEffect, useRef } from "react";
 import { cva } from "class-variance-authority";
 import { twMerge } from "tailwind-merge";
-import { motion, HTMLMotionProps } from "framer-motion";
+import { motion } from "framer-motion";
 import { useListNavigation } from "./use-list-navigation";
 
 type ListContextType = {
   selectedItemId: string | null;
   focusedItemId: string | null;
-  onSelect: (id: string) => void;
+  onSelect?: (id: string) => void;
   onFocus: (id: string) => void;
   onBlur: () => void;
   registerItem: (id: string) => void;
@@ -38,18 +38,10 @@ const listVariants = cva("w-full", {
 });
 
 export function List({ children, ordered = false, onSelect, className, selectedItem }: ListProps) {
-  const {
-    selectedItemId,
-    focusedItemId,
-    handleItemSelect,
-    handleItemBlur,
-    handleItemFocus,
-    registerItem,
-    handleKeyDown,
-  } = useListNavigation({
-    onSelect,
-    selectedItem,
-  });
+  const { selectedItemId, focusedItemId, handleItemBlur, handleItemFocus, registerItem, handleKeyDown } =
+    useListNavigation({
+      selectedItem,
+    });
 
   const Tag = ordered ? "ol" : "ul";
 
@@ -58,7 +50,7 @@ export function List({ children, ordered = false, onSelect, className, selectedI
       value={{
         selectedItemId,
         focusedItemId,
-        onSelect: handleItemSelect,
+        onSelect,
         onBlur: handleItemBlur,
         onFocus: handleItemFocus,
         registerItem,
@@ -75,10 +67,11 @@ type ListItemProps = {
   children: React.ReactNode;
   id: string;
   className?: string;
-} & Omit<HTMLMotionProps<"li">, "ref" | "children" | "className">;
+  onClick?: (e: React.MouseEvent) => void;
+};
 
 const listItemVariants = cva(
-  "px-4 py-2 rounded-md cursor-pointer outline-none focus-visible:ring-2 focus-visible:ring-primary/50 focus-visible:ring-offset-2 focus-visible:ring-offset-background transition-colors duration-200",
+  "w-full text-left px-4 py-2 rounded-md cursor-pointer outline-none focus-visible:ring-2 focus-visible:ring-primary/50 focus-visible:ring-offset-2 focus-visible:ring-offset-background transition-colors duration-200",
   {
     variants: {
       active: {
@@ -92,14 +85,13 @@ const listItemVariants = cva(
   }
 );
 
-export function ListItem({ children, id, className, ...restProps }: ListItemProps) {
+export function ListItem({ children, id, className, onClick, ...restProps }: ListItemProps) {
   const context = useContext(ListContext);
-  const itemRef = useRef<HTMLLIElement>(null);
+  const itemRef = useRef<HTMLButtonElement>(null);
 
   if (!context) throw new Error("List.Item must be used within List");
 
   const { selectedItemId, focusedItemId, onBlur, onSelect, onFocus, registerItem } = context;
-
   const isActive = selectedItemId === id;
   const isFocused = focusedItemId === id;
 
@@ -113,22 +105,31 @@ export function ListItem({ children, id, className, ...restProps }: ListItemProp
     }
   }, [isFocused]);
 
+  const handleClick = (e: React.MouseEvent) => {
+    onSelect?.(id);
+    onClick?.(e);
+  };
+
+  const handleFocus = () => {
+    onFocus(id);
+  };
+
   const styles = twMerge(listItemVariants({ active: isActive }), className);
 
   return (
-    <motion.li
+    <motion.button
       ref={itemRef}
       className={styles}
-      onClick={() => onSelect(id)}
-      onFocus={() => onFocus(id)}
+      onClick={handleClick}
+      onFocus={handleFocus}
       onBlur={onBlur}
       tabIndex={0}
-      role="option"
-      aria-selected={isActive}
+      role="listitem"
+      aria-current={isActive}
       whileTap={{ scale: 0.98 }}
       {...restProps}
     >
       {children}
-    </motion.li>
+    </motion.button>
   );
 }
