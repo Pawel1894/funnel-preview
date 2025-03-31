@@ -1,8 +1,8 @@
 import { Block } from "../funnel";
 import { BlockComponentProps, getBlockRenderer } from "./block-registry";
 
-export function BlockRenderer<T extends Block>({ block, bgColor, viewportWidth }: BlockComponentProps<T>) {
+export function BlockRenderer<T extends Block>({ block, bgColor }: BlockComponentProps<T>) {
   const Component = getBlockRenderer(block.type);
 
-  return <Component block={block} bgColor={bgColor} viewportWidth={viewportWidth} />;
+  return <Component block={block} bgColor={bgColor} />;
 }

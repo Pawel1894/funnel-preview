@@ -7,7 +7,6 @@ import { ButtonBlock } from "./blocks/button-block";
 export type BlockComponentProps<T extends Block> = {
   block: T;
   bgColor: string;
-  viewportWidth: number;
 };
 
 type BlockRegistry = {
