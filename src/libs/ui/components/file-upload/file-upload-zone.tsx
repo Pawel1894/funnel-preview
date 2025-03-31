@@ -57,7 +57,7 @@ export function FileUploadZone({
   const [error, setError] = useState<string | null>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
 
-  const clearError = () => {
+  const handleClearError = () => {
     setError(null);
   };
 
@@ -68,7 +68,7 @@ export function FileUploadZone({
       setIsDragging(true);
     }
 
-    clearError();
+    handleClearError();
 
     onDragOver?.(e);
   };
@@ -92,7 +92,7 @@ export function FileUploadZone({
     handleFileUpload(e.target.files[0]);
   };
 
-  const resetFileInput = () => {
+  const handleResetFileInput = () => {
     if (fileInputRef.current) {
       fileInputRef.current.value = "";
     }
@@ -103,13 +103,13 @@ export function FileUploadZone({
 
     setError(`File type not accepted. Please upload ${extension !== false ? extension : acceptedFileTypes}`);
 
-    resetFileInput();
+    handleResetFileInput();
   };
 
   const handleSelection = (file: File) => {
     onFileSelected?.(file);
 
-    resetFileInput();
+    handleResetFileInput();
   };
 
   const handleFileUpload = (file: File) => {
@@ -122,8 +122,8 @@ export function FileUploadZone({
     handleSelection(file);
   };
 
-  const openFileDialog = () => {
-    clearError();
+  const handleOpenFileDialog = () => {
+    handleClearError();
 
     if (!disabled && fileInputRef.current) {
       fileInputRef.current.click();
@@ -152,7 +152,7 @@ export function FileUploadZone({
         <UploadIcon className="size-14 text-muted-foreground" />
         <h2 className="text-2xl font-semibold text-center">{title}</h2>
         <p className="text-center text-muted-foreground md:px-8 max-w-lg">{description}</p>
-        <Button onClick={openFileDialog} variant="primary">
+        <Button onClick={handleOpenFileDialog} variant="primary">
           Select file
         </Button>
       </div>

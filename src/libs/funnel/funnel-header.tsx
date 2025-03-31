@@ -7,12 +7,12 @@ type FunnelHeaderProps = {
     current: number;
     total: number;
   };
-  classNames?: string;
+  className?: string;
 };
 
-export function FunnelHeader({ funnelTitle, pagination, classNames }: FunnelHeaderProps) {
+export function FunnelHeader({ funnelTitle, pagination, className }: FunnelHeaderProps) {
   return (
-    <div className={twMerge("flex items-center gap-x-4 p-4", classNames)}>
+    <div className={twMerge("flex items-center gap-x-4 p-4", className)}>
       <Image src="/logo.png" aria-hidden alt="" width={36} height={36} />
       <div className="flex flex-col justify-center min-w-0">
         <h1 title={funnelTitle} className="text-xl font-bold truncate">

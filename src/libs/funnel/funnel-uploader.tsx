@@ -36,7 +36,7 @@ export function FunnelUploader({ onFunnelLoaded }: FunnelUploaderProps) {
     }
   };
 
-  const onClearError = () => {
+  const handleClearError = () => {
     setUploadError(undefined);
   };
 
@@ -47,11 +47,11 @@ export function FunnelUploader({ onFunnelLoaded }: FunnelUploaderProps) {
         description="Drag and drop your funnel JSON file here, or click the button below to select a file"
         onFileSelected={handleFunnelFileUpload}
         acceptedFileTypes="application/json"
-        onDragOver={onClearError}
-        onDialogOpen={onClearError}
+        onDragOver={handleClearError}
+        onDialogOpen={handleClearError}
         className="w-full h-min"
       />
-      {uploadError && <FunnelError error={uploadError} onClose={onClearError} />}
+      {uploadError && <FunnelError error={uploadError} onClose={handleClearError} />}
     </div>
   );
 }

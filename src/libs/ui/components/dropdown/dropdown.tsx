@@ -72,14 +72,11 @@ export function Dropdown({
     }
   }, []);
 
-  const toggleDropdown = () => {
+  const handleToggleDropdown = () => {
     setIsOpen(!isOpen);
 
-    if (!isOpen && onSelect) {
-      onSelect();
-    }
-
     if (!isOpen) {
+      onSelect?.();
       onOpen?.(isOpen);
     }
   };
@@ -91,7 +88,7 @@ export function Dropdown({
       <div className="relative" ref={dropdownRef}>
         <motion.button
           type="button"
-          onClick={toggleDropdown}
+          onClick={handleToggleDropdown}
           className={buttonStyles}
           whileTap={{ scale: 0.98 }}
           aria-expanded={isOpen}
