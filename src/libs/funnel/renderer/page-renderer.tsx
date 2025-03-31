@@ -23,7 +23,12 @@ export function PageRenderer({ page, bgColor, viewMode = "mobile" }: PageRendere
   }
 
   return (
-    <div className="flex-1 border border-muted rounded-lg overflow-hidden md:p-4 h-inherit">
+    <div className="relative flex-1 border border-muted rounded-lg overflow-hidden md:p-4 h-inherit">
+      <div className="absolute top-2 right-2">
+        <div className="flex items-center px-2 py-1 rounded-md text-xs font-medium bg-muted text-muted-foreground w-fit">
+          {currentViewport.width} x {currentViewport.minHeight}
+        </div>
+      </div>
       <div className="h-full overflow-auto">
         <motion.div
           data-testid="page-container"

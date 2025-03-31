@@ -29,14 +29,14 @@ export function FunnelViewer({
   const [error, setError] = useState<{ message: string; issues: string[] } | null>(null);
 
   return (
-    <div className="flex flex-col w-full min-h-0 h-[calc(100dvh-8rem)]">
-      <div className="flex flex-col gap-4 ">
+    <div className="flex flex-col w-full h-full">
+      <div className="flex flex-col gap-4">
         <div className="md:hidden flex items-center justify-between">
           <PageSelectionDropdown pages={funnel.pages} currentPage={currentPage} onPageChange={onPageChange} />
           <FunnelPagination pages={funnel.pages} currentPage={currentPage} onPageChange={onPageChange} />
         </div>
         <div className="flex flex-col gap-4">
-          <div className="flex items-center justify-end gap-4">
+          <div className="flex items-center justify-between gap-4">
             <FunnelSelectionDropdown
               onClear={onFunnelClear}
               onFunnelLoaded={onFunnelUpload}
@@ -48,7 +48,7 @@ export function FunnelViewer({
         </div>
       </div>
 
-      <div className="flex gap-4 w-full flex-1 min-h-[600px] mt-4">
+      <div className="flex gap-4 w-full flex-1 min-h-0 mt-4">
         <div className="hidden md:block min-w-[250px] max-w-[350px] w-1/4">
           <FunnelSidebar onPageSelection={onPageChange} pages={funnel.pages} currentPage={currentPage} />
         </div>

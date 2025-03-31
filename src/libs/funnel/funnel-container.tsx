@@ -24,7 +24,7 @@ export function FunnelContainer() {
   };
 
   return (
-    <div className="flex flex-col flex-1">
+    <div className="flex flex-col h-full">
       <div className="shadow-md border-b-1 border-b-muted">
         <FunnelHeader
           className="mx-auto w-full max-w-md sm:max-w-xl md:max-w-screen-md lg:max-w-screen-lg xl:max-w-screen-xl 2xl:max-w-screen-2xl 3xl:max-w-screen-3xl"
@@ -37,7 +37,7 @@ export function FunnelContainer() {
           }
         />
       </div>
-      <div className="p-4 flex-1 flex justify-center h-full mx-auto w-full max-w-md sm:max-w-xl md:max-w-screen-md lg:max-w-screen-lg xl:max-w-screen-xl 2xl:max-w-screen-2xl 3xl:max-w-screen-3xl">
+      <div className="flex-1 p-4 flex justify-center overflow-hidden mx-auto w-full max-w-md sm:max-w-xl md:max-w-screen-md lg:max-w-screen-lg xl:max-w-screen-xl 2xl:max-w-screen-2xl 3xl:max-w-screen-3xl">
         {!funnel ? (
           <FunnelUploader onFunnelLoaded={handleFunnelLoaded} />
         ) : (
