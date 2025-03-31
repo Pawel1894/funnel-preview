@@ -1,6 +1,6 @@
 import { getLightOrDarkColor } from "@/libs/utils";
-import { ListBlock as ListBlockType } from "../../funnel";
-import { BlockComponentProps } from "../block-registry";
+import { ListBlock as ListBlockType } from "../domain/funnel";
+import { BlockComponentProps } from "../renderer/block-registry";
 
 export function ListBlock({ block, bgColor }: BlockComponentProps<ListBlockType>) {
   const color = getLightOrDarkColor(bgColor);

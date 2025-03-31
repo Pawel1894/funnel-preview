@@ -1,5 +1,5 @@
 import { List, ListItem } from "@/libs/ui";
-import { Page } from "./funnel";
+import { Page } from "./domain/funnel";
 import { createPageName } from "./pages";
 
 type FunnelSidebarProps = {

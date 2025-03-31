@@ -3,7 +3,7 @@
 import { createContext, useContext, useEffect, useLayoutEffect, useRef } from "react";
 import { cva } from "class-variance-authority";
 import { twMerge } from "tailwind-merge";
-import { motion } from "framer-motion";
+import { HTMLMotionProps, motion } from "framer-motion";
 import { useListNavigation } from "./use-list-navigation";
 
 type ListContextType = {
@@ -68,7 +68,7 @@ type ListItemProps = {
   id: string;
   className?: string;
   onClick?: (e: React.MouseEvent) => void;
-};
+} & HTMLMotionProps<"button">;
 
 const listItemVariants = cva(
   "w-full text-left px-4 py-2 rounded-md cursor-pointer outline-none focus-visible:ring-2 focus-visible:ring-primary/50 focus-visible:ring-offset-2 focus-visible:ring-offset-background transition-colors duration-200",

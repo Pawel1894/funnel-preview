@@ -1,4 +1,4 @@
-import { Block } from "../funnel";
+import { Block } from "../domain/funnel";
 import { BlockComponentProps, getBlockRenderer } from "./block-registry";
 
 export function BlockRenderer<T extends Block>({ block, bgColor }: BlockComponentProps<T>) {

@@ -1,5 +1,5 @@
 import { formatZodErrors } from "@/libs/utils";
-import { Funnel, FunnelSchema } from "../funnel";
+import { Funnel, FunnelSchema } from "../domain/funnel";
 
 export type FunnelParseResult =
   | {

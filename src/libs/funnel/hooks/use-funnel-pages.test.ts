@@ -1,5 +1,5 @@
 import { renderHook, act } from "@testing-library/react";
-import { Page } from "./funnel";
+import { Page } from "../domain/funnel";
 import { useFunnelPages } from "./use-funnel-pages";
 
 describe("useFunnelPages", () => {

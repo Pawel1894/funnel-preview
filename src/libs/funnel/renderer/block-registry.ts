@@ -1,8 +1,8 @@
-import { Block } from "../funnel";
-import { TextBlock } from "./blocks/text-block";
-import { ImageBlock } from "./blocks/image-block";
-import { ListBlock } from "./blocks/list-block";
-import { ButtonBlock } from "./blocks/button-block";
+import { Block } from "../domain/funnel";
+import { TextBlock } from "../blocks/text-block";
+import { ImageBlock } from "../blocks/image-block";
+import { ListBlock } from "../blocks/list-block";
+import { ButtonBlock } from "../blocks/button-block";
 
 export type BlockComponentProps<T extends Block> = {
   block: T;

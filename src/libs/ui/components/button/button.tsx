@@ -5,7 +5,7 @@ import { motion, HTMLMotionProps } from "framer-motion";
 export type ButtonProps = Omit<HTMLMotionProps<"button">, "disabled"> & {
   variant?: "primary" | "outline" | "ghost";
   size?: "sm" | "md" | "lg";
-  isDisabled?: boolean;
+  disabled?: boolean;
 };
 
 const buttonVariants = cva(
@@ -35,16 +35,16 @@ const buttonVariants = cva(
   }
 );
 
-export function Button({ className, variant = "outline", size = "md", isDisabled, ...props }: ButtonProps) {
-  const styles = twMerge(buttonVariants({ variant, size, disabled: isDisabled, className }));
+export function Button({ className, variant = "outline", size = "md", disabled, ...props }: ButtonProps) {
+  const styles = twMerge(buttonVariants({ variant, size, disabled: disabled, className }));
 
   return (
     <motion.button
       className={styles}
-      whileHover={!isDisabled ? { scale: 1.02 } : undefined}
-      whileTap={!isDisabled ? { scale: 0.98 } : undefined}
+      whileHover={!disabled ? { scale: 1.02 } : undefined}
+      whileTap={!disabled ? { scale: 0.98 } : undefined}
       initial={false}
-      disabled={isDisabled}
+      disabled={disabled}
       {...props}
     />
   );

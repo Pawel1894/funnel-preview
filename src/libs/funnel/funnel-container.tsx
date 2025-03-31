@@ -2,10 +2,10 @@
 
 import { useState } from "react";
 import { FunnelHeader } from "./funnel-header";
-import { Funnel } from "./funnel";
+import { Funnel } from "./domain/funnel";
 import { FunnelUploader } from "./funnel-uploader";
 import { FunnelViewer } from "./funnel-viewer";
-import { useFunnelPages } from "./use-funnel-pages";
+import { useFunnelPages } from "./hooks/use-funnel-pages";
 
 export function FunnelContainer() {
   const [funnel, setFunnel] = useState<Funnel>();

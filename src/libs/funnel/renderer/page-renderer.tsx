@@ -1,4 +1,4 @@
-import { Page, previewViewportSizes, ViewMode } from "../funnel";
+import { Page, previewViewportSizes, ViewMode } from "../domain/funnel";
 import { BlockRenderer } from "./block-renderer";
 import { motion, Variants } from "framer-motion";
 

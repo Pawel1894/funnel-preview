@@ -1,5 +1,5 @@
-import { ButtonBlock as ButtonBlockType } from "../../funnel";
-import { BlockComponentProps } from "../block-registry";
+import { ButtonBlock as ButtonBlockType } from "../domain/funnel";
+import { BlockComponentProps } from "../renderer/block-registry";
 
 export function ButtonBlock({ block }: BlockComponentProps<ButtonBlockType>) {
   return (

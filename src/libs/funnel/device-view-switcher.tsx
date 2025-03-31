@@ -1,5 +1,5 @@
 import { MobileIcon } from "@/libs/ui";
-import { isViewMode, ViewMode } from "./funnel";
+import { isViewMode, ViewMode } from "./domain/funnel";
 
 import { DesktopIcon, Switcher } from "@/libs/ui";
 

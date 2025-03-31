@@ -1,5 +1,5 @@
 import { useMemo, useState } from "react";
-import { Page } from "./funnel";
+import { Page } from "../domain/funnel";
 
 export function useFunnelPages(pages?: Page[]) {
   const [currentPage, setCurrentPage] = useState<Page | undefined>();

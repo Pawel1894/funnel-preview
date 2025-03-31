@@ -1,5 +1,5 @@
-import { ImageBlock as ImageBlockType } from "../../funnel";
-import { BlockComponentProps } from "../block-registry";
+import { ImageBlock as ImageBlockType } from "../domain/funnel";
+import { BlockComponentProps } from "../renderer/block-registry";
 
 export function ImageBlock({ block }: BlockComponentProps<ImageBlockType>) {
   return (

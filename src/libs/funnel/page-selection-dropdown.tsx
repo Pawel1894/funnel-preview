@@ -1,5 +1,5 @@
 import { Dropdown, List, ListItem, DropdownContent } from "@/libs/ui";
-import { Page } from "./funnel";
+import { Page } from "./domain/funnel";
 import { createPageName } from "./pages";
 
 export function PageSelectionDropdown({

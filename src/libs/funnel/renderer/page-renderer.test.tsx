@@ -1,6 +1,6 @@
 import { render, screen, waitFor } from "@/test/test-utils";
 import { PageRenderer } from "./page-renderer";
-import { Page } from "../funnel";
+import { Page } from "../domain/funnel";
 
 const mockPage: Page = {
   id: "page1",

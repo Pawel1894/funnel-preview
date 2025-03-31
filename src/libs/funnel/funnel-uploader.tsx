@@ -4,7 +4,7 @@ import { useState } from "react";
 import { FileUploadZone } from "@/libs/ui";
 import { FunnelError } from "./funnel-error";
 import { parseFunnelJson } from "./parser/funnel-parser";
-import { Funnel } from "./funnel";
+import { Funnel } from "./domain/funnel";
 
 type FunnelUploaderProps = {
   onFunnelLoaded: (funnel: Funnel) => void;

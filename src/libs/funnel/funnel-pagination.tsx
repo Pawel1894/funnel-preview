@@ -1,5 +1,5 @@
 import { Button, ChevronLeftIcon, ChevronRightIcon } from "@/libs/ui";
-import { Page } from "./funnel";
+import { Page } from "./domain/funnel";
 
 export function FunnelPagination({
   pages,

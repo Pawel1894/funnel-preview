@@ -1,5 +1,5 @@
-import { TextBlock as TextBlockType } from "../../funnel";
-import { BlockComponentProps } from "../block-registry";
+import { TextBlock as TextBlockType } from "../domain/funnel";
+import { BlockComponentProps } from "../renderer/block-registry";
 
 export function TextBlock({ block }: BlockComponentProps<TextBlockType>) {
   return (

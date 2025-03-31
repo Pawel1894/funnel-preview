@@ -1,6 +1,6 @@
-import { describe, it, expect } from "vitest";
+import { Funnel, TextBlock } from "../domain/funnel";
 import { parseFunnelJson } from "./funnel-parser";
-import { Funnel, TextBlock } from "../funnel";
+
 
 describe("parseFunnelJson", () => {
   it("should successfully parse valid funnel JSON", () => {

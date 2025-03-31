@@ -1,6 +1,6 @@
 import { render, screen, waitFor, userEvent } from "@/test/test-utils";
 import { FunnelContainer } from "./funnel-container";
-import { Funnel } from "./funnel";
+import { Funnel } from "./domain/funnel";
 
 const mockFunnel: Funnel = {
   name: "Test Funnel",

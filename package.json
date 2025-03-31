@@ -10,7 +10,8 @@
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
     "test": "vitest",
-    "test:watch": "vitest --watch"
+    "test:watch": "vitest --watch",
+    "check:types": "tsc --noEmit"
   },
   "dependencies": {
     "class-variance-authority": "^0.7.1",

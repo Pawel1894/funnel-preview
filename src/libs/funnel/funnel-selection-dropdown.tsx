@@ -1,7 +1,7 @@
 import { Dropdown, DropdownContent, List, ListItem, TrashIcon, UploadIcon } from "@/libs/ui";
 import { useCallback, useRef } from "react";
 import { parseFunnelJson } from "./parser/funnel-parser";
-import { Funnel } from "./funnel";
+import { Funnel } from "./domain/funnel";
 
 type FunnelViewerHeaderProps = {
   onClear?: () => void;

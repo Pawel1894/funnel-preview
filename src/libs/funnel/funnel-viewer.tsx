@@ -1,9 +1,9 @@
 "use client";
 
 import { useState } from "react";
-import { Funnel, Page, ViewMode } from "./funnel";
+import { Funnel, Page, ViewMode } from "./domain/funnel";
 import { FunnelSidebar } from "./funnel-sidebar";
-import { PageRenderer } from "./preview-builder/page-renderer";
+import { PageRenderer } from "./renderer/page-renderer";
 import { FunnelPagination } from "./funnel-pagination";
 import { PageSelectionDropdown } from "./page-selection-dropdown";
 import { FunnelSelectionDropdown } from "./funnel-selection-dropdown";
