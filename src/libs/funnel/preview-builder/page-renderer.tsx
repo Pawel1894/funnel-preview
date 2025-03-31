@@ -34,17 +34,13 @@ export function PageRenderer({ page, bgColor, viewMode = "mobile" }: PageRendere
             duration: 0.5,
             ease: [0.32, 0.72, 0, 1],
           }}
-          className="@container p-16 flex flex-col gap-14"
+          className="@container p-16 flex mx-auto flex-col gap-20"
           style={{
             backgroundColor: bgColor,
           }}
         >
           {page.blocks.map((block, index) => (
-            <motion.div 
-              key={block.id} 
-              {...createPageStaggeredAnimation(index)}
-              className="flex w-full"
-            >
+            <motion.div className="mx-auto w-full" key={block.id} {...createPageStaggeredAnimation(index)}>
               <BlockRenderer block={block} bgColor={bgColor} />
             </motion.div>
           ))}

@@ -7,19 +7,14 @@ export function ListBlock({ block, bgColor }: BlockComponentProps<ListBlockType>
   const textColor = color === "dark" ? "text-white" : "text-primary-foreground";
 
   return (
-    <ul className="grid grid-cols-1 @md:grid-cols-2 w-full @sm:max-w-xl @md:max-w-screen-md @lg:max-w-screen-lg @xl:max-w-screen-xl @2xl:max-w-screen-2xl mx-auto gap-4 @md:gap-6">
+    <ul className="grid grid-cols-1 @md:grid-cols-2 gap-8 @md:gap-12">
       {block.items.map((item) => (
-        <li key={item.id} className={`flex items-center p-6 rounded-2xl ${textColor} gap-3 @md:gap-4`}>
-          <div className="flex-none flex items-center justify-center rounded-xl h-12 w-12">
-            <img src={item.src} alt={item.title} className="object-contain" />
+        <li key={item.id} className={`flex flex-col items-center text-center ${textColor}`}>
+          <div className="mb-4">
+            {item.src && <img src={item.src} alt={item.title} className="w-12 h-12 @md:w-16 @md:h-16 object-contain" />}
           </div>
-
-          <div className="flex-1 min-w-0">
-            <div className="text-base @md:text-lg font-semibold leading-tight">{item.title}</div>
-            {item.description && (
-              <div className="text-sm @md:text-base mt-2 @md:mt-3 leading-relaxed">{item.description}</div>
-            )}
-          </div>
+          <h3 className="text-xl @md:text-2xl font-semibold mb-2">{item.title}</h3>
+          {item.description && <p className="leading-relaxed">{item.description}</p>}
         </li>
       ))}
     </ul>
