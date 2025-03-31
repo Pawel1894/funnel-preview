@@ -1,5 +1,6 @@
 import { Page, previewViewportSizes, ViewMode } from "../funnel";
 import { BlockRenderer } from "./block-renderer";
+import { motion, Variants } from "framer-motion";
 
 type PageRendererProps = {
   page?: Page;
@@ -24,19 +25,55 @@ export function PageRenderer({ page, bgColor, viewMode = "mobile" }: PageRendere
   return (
     <div className="flex-1 border border-muted rounded-lg overflow-hidden md:p-4 h-inherit">
       <div className="h-full overflow-auto">
-        <div
-          className="@container p-16 mx-auto flex flex-col gap-14"
+        <motion.div
+          animate={{
+            width: currentViewport.width,
+            minHeight: currentViewport.minHeight,
+          }}
+          transition={{
+            duration: 0.5,
+            ease: [0.32, 0.72, 0, 1],
+          }}
+          className="@container p-16 flex flex-col gap-14"
           style={{
-            width: `${currentViewport.width}px`,
-            minHeight: `${currentViewport.minHeight}px`,
             backgroundColor: bgColor,
           }}
         >
-          {page.blocks.map((block) => (
-            <BlockRenderer key={block.id} block={block} bgColor={bgColor} />
+          {page.blocks.map((block, index) => (
+            <motion.div 
+              key={block.id} 
+              {...createPageStaggeredAnimation(index)}
+              className="flex w-full"
+            >
+              <BlockRenderer block={block} bgColor={bgColor} />
+            </motion.div>
           ))}
-        </div>
+        </motion.div>
       </div>
     </div>
   );
+}
+
+function createPageStaggeredAnimation(
+  blockIndex: number,
+  maxDelay: number = 0.5,
+  staggerDelay: number = 0.1
+): Variants {
+  const delay = Math.min(blockIndex * staggerDelay, maxDelay);
+
+  return {
+    initial: {
+      opacity: 0,
+      y: 10,
+    },
+    animate: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.8,
+        delay,
+        ease: [0.32, 0.72, 0, 1],
+      },
+    },
+  };
 }
