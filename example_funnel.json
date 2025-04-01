@@ -1,0 +1,650 @@
+{
+  "name": "Complex Multi-Page Experience",
+  "bgColor": "#f8f9fa",
+  "pages": [
+    {
+      "id": "landing_page",
+      "title": "Interactive Landing Experience",
+      "bgColor": "#e9f7fe",
+      "blocks": [
+        {
+          "id": "header_001",
+          "type": "text",
+          "text": "Welcome to Our Interactive Experience",
+          "color": "#1a365d",
+          "align": "center",
+          "fontSize": "32px",
+          "fontWeight": "bold"
+        },
+        {
+          "id": "hero_image_001",
+          "type": "image",
+          "src": "https://images.unsplash.com/photo-1519389950473-47ba0277781c",
+          "alt": "Digital workspace with people collaborating",
+          "width": "100%",
+          "height": "400px",
+          "objectFit": "cover"
+        },
+        {
+          "id": "intro_text_001",
+          "type": "text",
+          "text": "Discover how our platform can transform your digital experience with cutting-edge solutions and intuitive design.",
+          "color": "#2d3748",
+          "align": "center",
+          "fontSize": "18px",
+          "margin": "20px 0"
+        },
+        {
+          "id": "feature_list_001",
+          "type": "list",
+          "style": "card",
+          "columns": 3,
+          "items": [
+            {
+              "id": "feature_item_001",
+              "title": "Intuitive Design",
+              "description": "User-friendly interface that makes navigation simple and enjoyable",
+              "src": "https://img.icons8.com/color/96/000000/design.png"
+            },
+            {
+              "id": "feature_item_002",
+              "title": "Powerful Analytics",
+              "description": "Gain insights into your audience with comprehensive data visualization",
+              "src": "https://img.icons8.com/color/96/000000/combo-chart.png"
+            },
+            {
+              "id": "feature_item_003",
+              "title": "Seamless Integration",
+              "description": "Connect with your favorite tools and services effortlessly",
+              "src": "https://img.icons8.com/color/96/000000/api-settings.png"
+            }
+          ]
+        },
+        {
+          "id": "cta_button_001",
+          "type": "button",
+          "text": "Get Started Today",
+          "color": "white",
+          "bgColor": "#3182ce",
+          "fontSize": "18px",
+          "padding": "15px 30px",
+          "borderRadius": "8px",
+          "margin": "20px auto"
+        },
+        {
+          "id": "testimonial_001",
+          "type": "text",
+          "text": "\"This platform revolutionized our workflow efficiency by 200%!\"",
+          "color": "#2a4365",
+          "align": "center",
+          "fontSize": "22px",
+          "fontStyle": "italic",
+          "margin": "30px 0 10px 0"
+        },
+        {
+          "id": "testimonial_author_001",
+          "type": "text",
+          "text": "- Sarah Johnson, CTO of TechInnovate",
+          "color": "#4a5568",
+          "align": "center",
+          "fontSize": "16px",
+          "margin": "0 0 40px 0"
+        },
+        {
+          "id": "divider_text_001",
+          "type": "text",
+          "text": "-------------------------------------------",
+          "color": "#bee3f8",
+          "align": "center",
+          "margin": "20px auto"
+        },
+        {
+          "id": "stats_header_001",
+          "type": "text",
+          "text": "Our Impact by the Numbers",
+          "color": "#1a365d",
+          "align": "center",
+          "fontSize": "24px",
+          "fontWeight": "bold",
+          "margin": "40px 0 20px 0"
+        },
+        {
+          "id": "stats_list_001",
+          "type": "list",
+          "style": "card",
+          "columns": 3,
+          "items": [
+            {
+              "id": "stat_item_001",
+              "title": "10K+",
+              "description": "Active Users",
+              "src": "https://img.icons8.com/color/96/000000/group.png"
+            },
+            {
+              "id": "stat_item_002",
+              "title": "99.9%",
+              "description": "Uptime Guarantee",
+              "src": "https://img.icons8.com/color/96/000000/clock.png"
+            },
+            {
+              "id": "stat_item_003",
+              "title": "24/7",
+              "description": "Customer Support",
+              "src": "https://img.icons8.com/color/96/000000/headset.png"
+            }
+          ]
+        },
+        {
+          "id": "partners_header_001",
+          "type": "text",
+          "text": "Trusted by Industry Leaders",
+          "color": "#1a365d",
+          "align": "center",
+          "fontSize": "20px",
+          "fontWeight": "bold",
+          "margin": "40px 0 20px 0"
+        },
+        {
+          "id": "secondary_cta_001",
+          "type": "button",
+          "text": "Schedule a Demo",
+          "color": "white",
+          "bgColor": "#805ad5",
+          "fontSize": "16px",
+          "padding": "12px 24px",
+          "borderRadius": "8px",
+          "margin": "10px auto"
+        }
+      ]
+    },
+    {
+      "id": "product_showcase",
+      "title": "Product Showcase",
+      "bgColor": "#f0fff4",
+      "blocks": [
+        {
+          "id": "product_header_001",
+          "type": "text",
+          "text": "Our Premium Product Collection",
+          "color": "#234e52",
+          "align": "center",
+          "fontSize": "28px",
+          "fontWeight": "bold"
+        },
+        {
+          "id": "product_subheader_001",
+          "type": "text",
+          "text": "Explore our range of high-quality solutions designed for your needs",
+          "color": "#2d3748",
+          "align": "center",
+          "fontSize": "16px"
+        },
+        {
+          "id": "product_details_001",
+          "type": "text",
+          "text": "Each product comes with a 30-day money-back guarantee and lifetime support",
+          "color": "#2d3748",
+          "align": "center",
+          "fontSize": "16px",
+          "fontStyle": "italic"
+        },
+        {
+          "id": "product_cta_001",
+          "type": "button",
+          "text": "Compare Plans in Detail",
+          "color": "white",
+          "bgColor": "#38a169",
+          "fontSize": "16px",
+          "padding": "12px 24px",
+          "borderRadius": "6px"
+        },
+        {
+          "id": "product_image_001",
+          "type": "image",
+          "src": "https://images.unsplash.com/photo-1498050108023-c5249f4df085",
+          "alt": "Premium Product - Enterprise Solution",
+          "width": "90%",
+          "height": "400px",
+          "objectFit": "cover",
+          "margin": "30px auto"
+        },
+        {
+          "id": "product_feature_header_001",
+          "type": "text",
+          "text": "Key Product Features",
+          "color": "#234e52",
+          "align": "center",
+          "fontSize": "24px",
+          "fontWeight": "bold",
+          "margin": "40px 0 20px 0"
+        },
+        {
+          "id": "product_feature_image_001",
+          "type": "image",
+          "src": "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40",
+          "alt": "Product features diagram",
+          "width": "90%",
+          "height": "300px",
+          "objectFit": "cover",
+          "margin": "0 auto 30px auto"
+        },
+        {
+          "id": "product_feature_text_001",
+          "type": "text",
+          "text": "Our platform combines advanced analytics with user-friendly interfaces to deliver unparalleled performance and insights.",
+          "color": "#2d3748",
+          "align": "center",
+          "fontSize": "18px",
+          "margin": "0 0 30px 0"
+        },
+        {
+          "id": "product_feature_list_001",
+          "type": "list",
+          "style": "card",
+          "columns": 2,
+          "items": [
+            {
+              "id": "feature_list_item_001",
+              "title": "Real-time Analytics",
+              "description": "Monitor performance as it happens",
+              "src": "https://img.icons8.com/color/96/000000/speed.png"
+            },
+            {
+              "id": "feature_list_item_002",
+              "title": "Customizable Dashboard",
+              "description": "Arrange information that matters to you",
+              "src": "https://img.icons8.com/color/96/000000/dashboard.png"
+            },
+            {
+              "id": "feature_list_item_003",
+              "title": "Secure Data Handling",
+              "description": "Enterprise-grade security protocols",
+              "src": "https://img.icons8.com/color/96/000000/security-shield.png"
+            },
+            {
+              "id": "feature_list_item_004",
+              "title": "Multi-device Support",
+              "description": "Access from anywhere, on any device",
+              "src": "https://img.icons8.com/color/96/000000/multiple-devices.png"
+            }
+          ]
+        },
+        {
+          "id": "testimonial_text_001",
+          "type": "text",
+          "text": "\"This platform has revolutionized how we approach digital solutions. The ease of use combined with powerful features has made it our go-to choice.\"",
+          "color": "#2d3748",
+          "align": "center",
+          "fontSize": "18px",
+          "fontStyle": "italic",
+          "background": "#e6fffa",
+          "padding": "20px",
+          "borderRadius": "12px",
+          "margin": "40px auto",
+          "width": "80%"
+        },
+        {
+          "id": "testimonial_author_002",
+          "type": "text",
+          "text": "- Michael Chen, Product Manager, InnoTech",
+          "color": "#2d3748",
+          "align": "center",
+          "fontSize": "16px",
+          "margin": "0 0 40px 0"
+        },
+        {
+          "id": "product_comparison_header_001",
+          "type": "text",
+          "text": "How We Compare",
+          "color": "#234e52",
+          "align": "center",
+          "fontSize": "24px",
+          "fontWeight": "bold",
+          "margin": "40px 0 20px 0"
+        },
+        {
+          "id": "trial_cta_001",
+          "type": "button",
+          "text": "Start Free Trial",
+          "color": "white",
+          "bgColor": "#38a169",
+          "fontSize": "18px",
+          "padding": "15px 30px",
+          "borderRadius": "8px",
+          "margin": "20px auto 10px auto"
+        }
+      ]
+    },
+    {
+      "id": "resource_center",
+      "title": "Resource Center",
+      "bgColor": "#fff5f5",
+      "blocks": [
+        {
+          "id": "resource_header_001",
+          "type": "text",
+          "text": "Knowledge & Resources",
+          "color": "#63171b",
+          "align": "center",
+          "fontSize": "30px",
+          "fontWeight": "bold"
+        },
+        {
+          "id": "resource_intro_001",
+          "type": "text",
+          "text": "Access our comprehensive library of resources designed to help you maximize your success with our platform.",
+          "color": "#2d3748",
+          "align": "center",
+          "fontSize": "18px",
+          "margin": "20px 0 40px 0"
+        },
+        {
+          "id": "resource_image_001",
+          "type": "image",
+          "src": "https://images.unsplash.com/photo-1516321318423-f06f85e504b3",
+          "alt": "Digital library concept",
+          "width": "80%",
+          "height": "300px",
+          "objectFit": "cover",
+          "margin": "0 auto 40px auto",
+          "borderRadius": "12px"
+        },
+        {
+          "id": "resource_categories_header_001",
+          "type": "text",
+          "text": "Browse by Category",
+          "color": "#63171b",
+          "align": "center",
+          "fontSize": "24px",
+          "fontWeight": "bold",
+          "margin": "20px 0"
+        },
+        {
+          "id": "resource_categories_list_001",
+          "type": "list",
+          "style": "card",
+          "columns": 3,
+          "items": [
+            {
+              "id": "category_item_001",
+              "title": "Getting Started",
+              "description": "First steps with our platform",
+              "src": "https://img.icons8.com/color/96/000000/launched-rocket.png"
+            },
+            {
+              "id": "category_item_002",
+              "title": "Best Practices",
+              "description": "Optimization techniques",
+              "src": "https://img.icons8.com/color/96/000000/diploma.png"
+            },
+            {
+              "id": "category_item_003",
+              "title": "Case Studies",
+              "description": "Success stories",
+              "src": "https://img.icons8.com/color/96/000000/microscope.png"
+            },
+            {
+              "id": "category_item_004",
+              "title": "Webinars",
+              "description": "Recorded sessions",
+              "src": "https://img.icons8.com/color/96/000000/video-call.png"
+            },
+            {
+              "id": "category_item_005",
+              "title": "eBooks",
+              "description": "In-depth guides",
+              "src": "https://img.icons8.com/color/96/000000/book-shelf.png"
+            },
+            {
+              "id": "category_item_006",
+              "title": "Tutorials",
+              "description": "Step-by-step guides",
+              "src": "https://img.icons8.com/color/96/000000/idea-sharing.png"
+            }
+          ]
+        },
+        {
+          "id": "featured_resource_header_001",
+          "type": "text",
+          "text": "Featured Resources",
+          "color": "#63171b",
+          "align": "center",
+          "fontSize": "24px",
+          "fontWeight": "bold",
+          "margin": "40px 0 20px 0"
+        },
+        {
+          "id": "featured_resource_list_001",
+          "type": "list",
+          "style": "card",
+          "columns": 2,
+          "items": [
+            {
+              "id": "featured_item_001",
+              "title": "Ultimate Guide to Digital Transformation",
+              "description": "Learn how to successfully implement digital strategies",
+              "src": "https://img.icons8.com/color/96/000000/literature.png"
+            },
+            {
+              "id": "featured_item_002",
+              "title": "2023 Industry Trends Report",
+              "description": "Key insights and predictions for the coming year",
+              "src": "https://img.icons8.com/color/96/000000/business-report.png"
+            }
+          ]
+        },
+        {
+          "id": "newsletter_text_001",
+          "type": "text",
+          "text": "Stay Updated With Our Newsletter",
+          "color": "#63171b",
+          "align": "center",
+          "fontSize": "20px",
+          "fontWeight": "bold",
+          "margin": "40px 0 10px 0"
+        },
+        {
+          "id": "newsletter_description_001",
+          "type": "text",
+          "text": "Subscribe to receive the latest resources and updates straight to your inbox",
+          "color": "#2d3748",
+          "align": "center",
+          "fontSize": "16px",
+          "margin": "0 0 20px 0"
+        },
+        {
+          "id": "newsletter_button_001",
+          "type": "button",
+          "text": "Subscribe to Newsletter",
+          "color": "white",
+          "bgColor": "#9f7aea",
+          "fontSize": "16px",
+          "padding": "12px 24px",
+          "borderRadius": "8px",
+          "margin": "10px auto 40px auto"
+        },
+        {
+          "id": "download_header_001",
+          "type": "text",
+          "text": "Free Resource Pack",
+          "color": "#63171b",
+          "align": "center",
+          "fontSize": "24px",
+          "fontWeight": "bold",
+          "margin": "40px 0 20px 0"
+        },
+        {
+          "id": "download_description_001",
+          "type": "text",
+          "text": "Get our collection of templates, checklists, and guides to accelerate your projects.",
+          "color": "#2d3748",
+          "align": "center",
+          "fontSize": "16px",
+          "margin": "0 0 20px 0"
+        },
+        {
+          "id": "download_image_001",
+          "type": "image",
+          "src": "https://images.unsplash.com/photo-1507842217343-583bb7270b66",
+          "alt": "Resource pack preview",
+          "width": "60%",
+          "height": "250px",
+          "objectFit": "cover",
+          "margin": "0 auto 30px auto",
+          "borderRadius": "8px"
+        },
+        {
+          "id": "download_button_001",
+          "type": "button",
+          "text": "Download Free Resources",
+          "color": "white",
+          "bgColor": "#e53e3e",
+          "fontSize": "16px",
+          "padding": "12px 24px",
+          "borderRadius": "8px",
+          "margin": "10px auto 40px auto"
+        }
+      ]
+    },
+    {
+      "id": "contact_page",
+      "title": "Contact & Support",
+      "bgColor": "#ebf8ff",
+      "blocks": [
+        {
+          "id": "contact_header_001",
+          "type": "text",
+          "text": "Get in Touch",
+          "color": "#2c5282",
+          "align": "center",
+          "fontSize": "32px",
+          "fontWeight": "bold"
+        },
+        {
+          "id": "contact_subheader_001",
+          "type": "text",
+          "text": "We're here to help with any questions or concerns",
+          "color": "#2d3748",
+          "align": "center",
+          "fontSize": "18px",
+          "margin": "0 0 40px 0"
+        },
+        {
+          "id": "contact_info_header_001",
+          "type": "text",
+          "text": "Contact Information",
+          "color": "#2c5282",
+          "align": "center",
+          "fontSize": "24px",
+          "fontWeight": "bold",
+          "margin": "0 0 20px 0"
+        },
+        {
+          "id": "contact_info_list_001",
+          "type": "list",
+          "style": "card",
+          "columns": 2,
+          "items": [
+            {
+              "id": "contact_item_001",
+              "title": "Office Address",
+              "description": "123 Innovation Street, Tech City, CA 94043",
+              "src": "https://img.icons8.com/color/96/000000/address.png"
+            },
+            {
+              "id": "contact_item_002",
+              "title": "Phone",
+              "description": "+1 (555) 123-4567",
+              "src": "https://img.icons8.com/color/96/000000/phone.png"
+            },
+            {
+              "id": "contact_item_003",
+              "title": "Email",
+              "description": "support@example.com",
+              "src": "https://img.icons8.com/color/96/000000/email.png"
+            },
+            {
+              "id": "contact_item_004",
+              "title": "Business Hours",
+              "description": "Monday - Friday: 9am to 5pm PST",
+              "src": "https://img.icons8.com/color/96/000000/clock.png"
+            }
+          ]
+        },
+        {
+          "id": "contact_image_001",
+          "type": "image",
+          "src": "https://images.unsplash.com/photo-1423666639041-f56000c27a9a",
+          "alt": "Contact and support team",
+          "width": "80%",
+          "height": "300px",
+          "objectFit": "cover",
+          "margin": "40px auto",
+          "borderRadius": "8px"
+        },
+        {
+          "id": "social_media_header_001",
+          "type": "text",
+          "text": "Connect With Us",
+          "color": "#2c5282",
+          "align": "center",
+          "fontSize": "24px",
+          "fontWeight": "bold",
+          "margin": "20px 0"
+        },
+        {
+          "id": "social_media_text_001",
+          "type": "text",
+          "text": "Follow us on social media for the latest updates, tips, and news",
+          "color": "#2d3748",
+          "align": "center",
+          "fontSize": "16px",
+          "margin": "0 0 20px 0"
+        },
+        {
+          "id": "social_media_list_001",
+          "type": "list",
+          "style": "card",
+          "columns": 4,
+          "items": [
+            {
+              "id": "social_media_item_001",
+              "title": "Twitter",
+              "description": "@example",
+              "src": "https://img.icons8.com/color/96/000000/twitter.png"
+            },
+            {
+              "id": "social_media_item_002",
+              "title": "Facebook",
+              "description": "facebook.com/example",
+              "src": "https://img.icons8.com/color/96/000000/facebook.png"
+            },
+            {
+              "id": "social_media_item_003",
+              "title": "LinkedIn",
+              "description": "linkedin.com/company/example",
+              "src": "https://img.icons8.com/color/96/000000/linkedin.png"
+            },
+            {
+              "id": "social_media_item_004",
+              "title": "Instagram",
+              "description": "@example",
+              "src": "https://img.icons8.com/color/96/000000/instagram-new.png"
+            }
+          ]
+        },
+        {
+          "id": "support_cta_001",
+          "type": "button",
+          "text": "Visit Help Center",
+          "color": "white",
+          "bgColor": "#4299e1",
+          "fontSize": "18px",
+          "padding": "12px 24px",
+          "borderRadius": "6px",
+          "margin": "30px auto"
+        }
+      ]
+    }
+  ]
+}

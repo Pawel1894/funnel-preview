@@ -36,6 +36,13 @@ export function FunnelViewer({
     }
   };
 
+  const handleFunnelUpload = (funnel: Funnel) => {
+    onFunnelUpload?.(funnel);
+    if (pagePreviewRef.current?.scrollTo) {
+      pagePreviewRef.current.scrollTo({ top: 0 });
+    }
+  };
+
   return (
     <div className="flex flex-col w-full h-inherit">
       <div className="flex flex-col gap-2 md:gap-4">
@@ -51,7 +58,7 @@ export function FunnelViewer({
           <div className="flex items-center justify-between gap-4">
             <FunnelSelectionDropdown
               onClear={onFunnelClear}
-              onFunnelLoaded={onFunnelUpload}
+              onFunnelLoaded={handleFunnelUpload}
               onError={setError}
             />
             <DeviceViewSwitcher viewMode={viewMode} onChange={setViewMode} />
