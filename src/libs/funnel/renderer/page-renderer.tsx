@@ -24,7 +24,7 @@ export function PageRenderer({ page, bgColor, viewMode = "mobile" }: PageRendere
 
   return (
     <div
-      data-testId="funnel-container"
+      data-testid="funnel-container"
       className="relative flex-1 overflow-scroll"
       style={{
         width: currentViewport.width,
@@ -32,8 +32,8 @@ export function PageRenderer({ page, bgColor, viewMode = "mobile" }: PageRendere
       }}
     >
       <div
-        data-testId="funnel-content"
-        className="@container p-16 mx-auto space-y-24 overflow-hidden"
+        data-testid="funnel-content"
+        className="@container p-16 mx-auto space-y-24 overflow-hidden transition-all duration-300 ease-in-out"
         style={{
           backgroundColor: bgColor,
           width: currentViewport.width,
