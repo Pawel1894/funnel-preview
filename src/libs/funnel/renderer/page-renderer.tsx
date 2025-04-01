@@ -6,9 +6,10 @@ type PageRendererProps = {
   page?: Page;
   viewMode?: ViewMode;
   bgColor: string;
+  ref?: React.RefObject<HTMLDivElement | null>;
 };
 
-export function PageRenderer({ page, bgColor, viewMode = "mobile" }: PageRendererProps) {
+export function PageRenderer({ page, bgColor, viewMode = "mobile", ref }: PageRendererProps) {
   const currentViewport = previewViewportSizes[viewMode];
 
   if (!page || !page.blocks || page.blocks.length === 0) {
@@ -24,6 +25,7 @@ export function PageRenderer({ page, bgColor, viewMode = "mobile" }: PageRendere
 
   return (
     <div
+      ref={ref}
       data-testid="funnel-container"
       className="relative flex-1 overflow-auto"
       style={{
