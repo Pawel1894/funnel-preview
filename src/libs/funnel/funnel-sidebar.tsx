@@ -29,7 +29,7 @@ export function FunnelSidebar({ pages, onPageSelection, currentPage }: FunnelSid
             </div>
           </List>
         ) : (
-          <span className="text-sm text-muted-foreground">No pages found</span>
+          <span className="p-4 text-sm text-muted-foreground">No pages found</span>
         )}
       </nav>
     </aside>
