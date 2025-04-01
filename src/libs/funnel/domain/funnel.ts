@@ -43,16 +43,34 @@ const BlockSchema = z.discriminatedUnion("type", [
   ButtonBlockSchema,
 ]);
 
-const PageSchema = z.object({
+export const PageSchema = z.object({
   id: z.string(),
   blocks: z.array(BlockSchema).default([]),
-});
+}).refine(
+  (page) => {
+    const blockIds = page.blocks.map((block) => block.id);
+    return new Set(blockIds).size === blockIds.length;
+  },
+  {
+    message: "All blocks within a page must have unique IDs",
+    path: ["blocks"],
+  }
+);
 
 export const FunnelSchema = z.object({
   name: z.string(),
   bgColor: z.string().default("#F5F5F5"),
   pages: z.array(PageSchema).default([]),
-});
+}).refine(
+  (funnel) => {
+    const pageIds = funnel.pages.map((page) => page.id);
+    return new Set(pageIds).size === pageIds.length;
+  },
+  {
+    message: "All pages must have unique IDs",
+    path: ["pages"],
+  }
+);
 
 export type TextBlock = z.infer<typeof TextBlockSchema>;
 export type ImageBlock = z.infer<typeof ImageBlockSchema>;

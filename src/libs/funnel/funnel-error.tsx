@@ -12,7 +12,7 @@ type FunnelErrorProps = {
 export function FunnelError({ error, onClose }: FunnelErrorProps) {
   const [showAll, setShowAll] = useState(false);
   const displayIssues = showAll ? error.issues : error.issues.slice(0, 2);
-  const hasMoreIssues = error.issues.length > 2;
+  const hasMoreIssues = error.issues.length > 3;
 
   return (
     <div className="relative">
