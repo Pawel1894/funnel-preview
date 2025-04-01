@@ -28,7 +28,8 @@ export function PageRenderer({ page, bgColor, viewMode = "mobile" }: PageRendere
       className="relative flex-1 overflow-auto"
       style={{
         width: currentViewport.width,
-        height: currentViewport.height,
+        height: viewMode === "mobile" ? currentViewport.height : "0",
+        minHeight: viewMode === "mobile" ? "0px" : "100%",
       }}
     >
       <div

@@ -7,7 +7,7 @@ export type SwitcherOption = {
   value: string;
   label?: string;
   icon?: React.ReactNode;
-  tooltip?: string;
+  tooltip?: React.ReactNode;
 };
 
 export type SwitcherProps = {

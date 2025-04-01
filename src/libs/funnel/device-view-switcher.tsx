@@ -1,12 +1,25 @@
 import { MobileIcon } from "@/libs/ui";
 import { isViewMode, ViewMode, previewViewportSizes } from "./domain/funnel";
-
 import { DesktopIcon, Switcher } from "@/libs/ui";
 
 type DeviceViewSwitcherProps = {
   viewMode: ViewMode;
   onChange: (value: ViewMode) => void;
 };
+
+function ViewportTooltip({ mode }: { mode: ViewMode }) {
+  const size = previewViewportSizes[mode];
+
+  return (
+    <div className="flex flex-col gap-1">
+      <div className="font-medium">{mode === "desktop" ? "Desktop" : "Mobile"} Preview</div>
+      {mode === "desktop" && <div className="font-medium mt-0.5">*Height adjusts to screen height</div>}
+      <div className="text-sm">
+        {size.width} × {size.height}px
+      </div>
+    </div>
+  );
+}
 
 export function DeviceViewSwitcher({ onChange, viewMode }: DeviceViewSwitcherProps) {
   const handleViewModeChange = (value: string) => {
@@ -23,12 +36,12 @@ export function DeviceViewSwitcher({ onChange, viewMode }: DeviceViewSwitcherPro
         {
           value: "desktop",
           icon: <DesktopIcon />,
-          tooltip: `${previewViewportSizes.desktop.width}x${previewViewportSizes.desktop.height}`,
+          tooltip: <ViewportTooltip mode="desktop" />,
         },
         {
           value: "mobile",
           icon: <MobileIcon />,
-          tooltip: `${previewViewportSizes.mobile.width}x${previewViewportSizes.mobile.height}`,
+          tooltip: <ViewportTooltip mode="mobile" />,
         },
       ]}
     />
