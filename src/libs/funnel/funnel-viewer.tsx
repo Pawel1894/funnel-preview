@@ -30,7 +30,7 @@ export function FunnelViewer({
 
   return (
     <div className="flex flex-col w-full h-inherit">
-      <div className="flex flex-col gap-4">
+      <div className="flex flex-col gap-2 md:gap-4">
         <div className="md:hidden flex items-center justify-between">
           <PageSelectionDropdown pages={funnel.pages} currentPage={currentPage} onPageChange={onPageChange} />
           <FunnelPagination pages={funnel.pages} currentPage={currentPage} onPageChange={onPageChange} />
