@@ -13,8 +13,8 @@ export function ListBlock({ block, bgColor }: BlockComponentProps<ListBlockType>
           <div className="mb-4">
             {item.src && <img src={item.src} alt={item.title} className="w-12 h-12 @md:w-16 @md:h-16 object-contain" />}
           </div>
-          <h3 title={item.title} className="text-xl @md:text-2xl font-semibold mb-2 break-words">{item.title}</h3>
-          {item.description && <p title={item.description} className="leading-relaxed break-words">{item.description}</p>}
+          <h3 title={item.title} className="text-xl @md:text-2xl font-semibold mb-2 break-words max-w-full">{item.title}</h3>
+          {item.description && <p title={item.description} className="leading-relaxed break-words max-w-full">{item.description}</p>}
         </li>
       ))}
     </ul>

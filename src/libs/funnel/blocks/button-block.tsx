@@ -5,7 +5,7 @@ export function ButtonBlock({ block }: BlockComponentProps<ButtonBlockType>) {
   return (
     <button
       type="button"
-      className="block rounded-2xl cursor-pointer font-semibold shadow-lg hover:opacity-90 mx-auto transition-opacity w-fit text-base @md:text-lg px-6 @md:px-9 py-3 @md:py-4 max-w-md text-wrap break-words"
+      className="block rounded-2xl cursor-pointer font-semibold shadow-lg hover:opacity-90 mx-auto transition-opacity w-fit text-base @md:text-lg px-6 @md:px-9 py-3 @md:py-4 max-w-[100cqw] @md:max-w-md text-wrap break-words"
       style={{
         backgroundColor: block.bgColor,
         color: block.color,
