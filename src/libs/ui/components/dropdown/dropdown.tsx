@@ -121,7 +121,7 @@ export function DropdownContent({ children, className }: DropdownContentProps) {
           exit={{ opacity: 0, y: -5 }}
           transition={{ duration: 0.15 }}
           className={twMerge(
-            "absolute z-10 w-full mt-1 bg-background border border-muted rounded-md shadow-lg",
+            "absolute z-10 w-full mt-1 bg-background border border-muted rounded-md shadow-lg max-h-[500px] overflow-y-auto",
             className
           )}
           onClick={() => closeAfterSelect && setIsOpen(false)}
