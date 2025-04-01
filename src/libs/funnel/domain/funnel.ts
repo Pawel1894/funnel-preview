@@ -3,7 +3,7 @@ import { z } from "zod";
 const TextBlockSchema = z.object({
   id: z.string(),
   type: z.literal("text"),
-  text: z.string(),
+  text: z.string().min(1, "Required"),
   color: z.string().default("#202020"),
   align: z.enum(["left", "center", "right"]).default("left"),
 });
@@ -11,13 +11,13 @@ const TextBlockSchema = z.object({
 const ImageBlockSchema = z.object({
   id: z.string(),
   type: z.literal("image"),
-  src: z.string(),
+  src: z.string().min(1, "Required"),
   alt: z.string().default("Image"),
 });
 
 const ListItemSchema = z.object({
   id: z.string(),
-  title: z.string(),
+  title: z.string().min(1, "Required"),
   description: z.string().optional(),
   src: z.string().optional(),
 });
@@ -25,7 +25,17 @@ const ListItemSchema = z.object({
 const ListBlockSchema = z.object({
   id: z.string(),
   type: z.literal("list"),
-  items: z.array(ListItemSchema).default([]),
+  items: z.array(ListItemSchema)
+    .default([])
+    .refine(
+      (items) => {
+        const itemsIds = items.map((item) => item.id);
+        return new Set(itemsIds).size === itemsIds.length;
+      },
+      {
+        message: "All items within a list must have unique IDs",
+      }
+    ),
 });
 
 const ButtonBlockSchema = z.object({

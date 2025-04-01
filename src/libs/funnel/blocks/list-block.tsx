@@ -14,7 +14,7 @@ export function ListBlock({ block, bgColor }: BlockComponentProps<ListBlockType>
             {item.src && <img src={item.src} alt={item.title} className="w-12 h-12 @md:w-16 @md:h-16 object-contain" />}
           </div>
           <h3 title={item.title} className="text-xl @md:text-2xl font-semibold mb-2 line-clamp-2">{item.title}</h3>
-          {item.description && <p title={item.description} className="leading-relaxed line-clamp-6">{item.description}</p>}
+          {item.description && <p title={item.description} className="leading-relaxed line-clamp-4">{item.description}</p>}
         </li>
       ))}
     </ul>
