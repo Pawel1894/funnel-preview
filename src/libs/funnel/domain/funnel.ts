@@ -75,7 +75,7 @@ export const previewViewportSizes: Record<ViewMode, { width: number; height: num
     height: 600,
   },
   desktop: {
-    width: 1440,
-    height: 900,
+    width: 1280,
+    height: 720,
   },
 };
