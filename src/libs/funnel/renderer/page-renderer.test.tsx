@@ -93,14 +93,14 @@ describe("PageRenderer", () => {
     const bgColor = "#FF0000";
     render(<PageRenderer page={mockPage} bgColor={bgColor} />);
 
-    const container = screen.getByTestId("page-container");
+    const container = screen.getByTestId("funnel-content");
     expect(container).toHaveStyle({ backgroundColor: bgColor });
   });
 
   it("renders with mobile viewport by default", () => {
     render(<PageRenderer page={mockPage} bgColor="#FFFFFF" />);
 
-    const container = screen.getByTestId("page-container");
+    const container = screen.getByTestId("funnel-container");
     waitFor(() => {
       expect(container).toHaveStyle({
         width: "375px",
@@ -112,7 +112,7 @@ describe("PageRenderer", () => {
   it("renders with desktop viewport when specified", () => {
     render(<PageRenderer page={mockPage} bgColor="#FFFFFF" viewMode="desktop" />);
 
-    const container = screen.getByTestId("page-container");
+    const container = screen.getByTestId("funnel-container");
     waitFor(() => {
       expect(container).toHaveStyle({
         width: "1280px",

@@ -23,34 +23,28 @@ export function PageRenderer({ page, bgColor, viewMode = "mobile" }: PageRendere
   }
 
   return (
-    <div className="relative flex-1 border border-muted rounded-lg overflow-hidden md:p-4 h-inherit">
-      <div className="absolute top-2 right-2">
-        <div className="flex items-center px-2 py-1 rounded-md text-xs font-medium bg-muted text-muted-foreground w-fit">
-          {currentViewport.width} x {currentViewport.minHeight}
-        </div>
-      </div>
-      <div className="h-full overflow-auto">
-        <motion.div
-          data-testid="page-container"
-          animate={{
-            width: currentViewport.width,
-            minHeight: currentViewport.minHeight,
-          }}
-          transition={{
-            duration: 0.5,
-            ease: [0.32, 0.72, 0, 1],
-          }}
-          className="@container p-16 flex mx-auto flex-col gap-20"
-          style={{
-            backgroundColor: bgColor,
-          }}
-        >
-          {page.blocks.map((block, index) => (
-            <motion.div className="mx-auto w-full" key={block.id} {...createPageStaggeredAnimation(index)}>
-              <BlockRenderer block={block} bgColor={bgColor} />
-            </motion.div>
-          ))}
-        </motion.div>
+    <div
+      data-testId="funnel-container"
+      className="relative flex-1 overflow-scroll"
+      style={{
+        width: currentViewport.width,
+        height: currentViewport.height,
+      }}
+    >
+      <div
+        data-testId="funnel-content"
+        className="@container p-16 mx-auto space-y-24 overflow-hidden"
+        style={{
+          backgroundColor: bgColor,
+          width: currentViewport.width,
+          minHeight: currentViewport.height,
+        }}
+      >
+        {page.blocks.map((block, index) => (
+          <motion.div className="mx-auto w-full" key={block.id} {...createPageStaggeredAnimation(index)}>
+            <BlockRenderer block={block} bgColor={bgColor} />
+          </motion.div>
+        ))}
       </div>
     </div>
   );

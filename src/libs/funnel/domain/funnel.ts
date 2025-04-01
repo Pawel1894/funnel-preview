@@ -62,20 +62,20 @@ export type ButtonBlock = z.infer<typeof ButtonBlockSchema>;
 export type Block = z.infer<typeof BlockSchema>;
 export type Page = z.infer<typeof PageSchema>;
 export type Funnel = z.infer<typeof FunnelSchema>;
-
+  
 export type ViewMode = "desktop" | "mobile";
 
 export function isViewMode(value: string): value is ViewMode {
   return value === "desktop" || value === "mobile";
 }
 
-export const previewViewportSizes: Record<ViewMode, { width: number; minHeight: number }> = {
+export const previewViewportSizes: Record<ViewMode, { width: number; height: number }> = {
   mobile: {
     width: 375,
-    minHeight: 812,
+    height: 600,
   },
   desktop: {
-    width: 1920,
-    minHeight: 1080,
+    width: 1440,
+    height: 900,
   },
 };

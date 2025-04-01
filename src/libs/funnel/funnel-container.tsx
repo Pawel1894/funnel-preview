@@ -24,7 +24,7 @@ export function FunnelContainer() {
   };
 
   return (
-    <div className="flex flex-col h-full">
+    <div className="flex flex-col h-full min-h-inherit">
       <div className="shadow-md border-b-1 border-b-muted">
         <FunnelHeader
           className="mx-auto w-full max-w-md sm:max-w-xl md:max-w-screen-md lg:max-w-screen-lg xl:max-w-screen-xl 2xl:max-w-screen-2xl 3xl:max-w-screen-3xl"
