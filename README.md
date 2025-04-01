@@ -2,7 +2,7 @@
 
 A modern, responsive web application for previewing marketing funnels through an intuitive JSON-based interface. The application allows users to upload, view, and interact with funnel configurations in both desktop and mobile views.
 
-![Funnel Preview Demo](path/to/your-demo.gif)
+![chrome_0zNN3fy1pT](https://github.com/user-attachments/assets/4f568810-c956-4517-ac48-9d75a20a787f)
 
 ## Features
 
