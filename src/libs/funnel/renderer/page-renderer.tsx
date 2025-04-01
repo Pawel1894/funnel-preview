@@ -25,7 +25,7 @@ export function PageRenderer({ page, bgColor, viewMode = "mobile" }: PageRendere
   return (
     <div
       data-testid="funnel-container"
-      className="relative flex-1 overflow-scroll"
+      className="relative flex-1 overflow-auto"
       style={{
         width: currentViewport.width,
         height: currentViewport.height,
