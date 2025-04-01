@@ -13,7 +13,7 @@ function ViewportTooltip({ mode }: { mode: ViewMode }) {
   return (
     <div className="flex flex-col gap-1">
       <div className="font-medium">{mode === "desktop" ? "Desktop" : "Mobile"} Preview</div>
-      {mode === "desktop" && <div className="font-medium mt-0.5">*Height adjusts to screen height</div>}
+      {mode === "desktop" && <div className="font-medium mt-0.5">*Height adjusts to content</div>}
       <div className="text-sm">
         {size.width} × {size.height}px
       </div>
